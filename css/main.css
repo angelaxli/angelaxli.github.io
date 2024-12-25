@@ -236,19 +236,18 @@ div.sub, iframe {
 
 .container-flex {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start; /* Align the items to the top */
-  gap: 20px; /* Add spacing between the items */
+  justify-content: flex-start; /* Align items to the left */
+  align-items: flex-start; /* Align to the top */
+  gap: 20px; /* Space between the two sections */
   margin: 20px;
 }
 
 #who-am-i {
-  flex: 1; /* Allow the Who Am I section to take up more space */
-  text-align: left;
+  flex: 1; /* Take available space */
 }
 
-iframe {
-  flex: 0 0 auto; /* Ensure the Spotify embed keeps its width */
+#spotify {
+  flex: 0 0 auto; /* Maintain fixed width for Spotify embed */
 }
 
 .button--piyo{
