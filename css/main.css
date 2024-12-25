@@ -235,11 +235,12 @@ div.sub, iframe {
 }
 
 .container-flex {
-  display: flex;
-  justify-content: flex-start; /* Align items to the left */
-  align-items: flex-start; /* Align to the top */
-  gap: 20px; /* Space between the two sections */
-  margin: 20px;
+	display: flex;
+	justify-content: flex-start; /* Align items to the left */
+	align-items: flex-start; /* Align to the top */
+	gap: 20px; /* Space between the two sections */
+	margin: 20px;
+	max-width: 100%;
 }
 
 #who-am-i {
