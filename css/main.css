@@ -654,3 +654,7 @@ section {
   margin-right: 5%;
   margin-left: 5%;
 }
+.button-container {
+  text-align: center; 
+  width: 100%; /* Or a specific width if you want to constrain it */
+}
