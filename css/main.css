@@ -612,27 +612,23 @@ body {
 .button:not(:last-child){
   margin-bottom : 80px ;
 }
-
 .container-flex {
   display: flex;
-  justify-content: space-between; /* Adjust spacing as needed */
   align-items: flex-start; /* Align items to the top */
-  gap: 10px; /* Space between the sections */
-  width: 100%; /* Stretch container across the screen */
-  box-sizing: border-box; /* Include padding in width calculations */
-  padding: 0 20px; /* Optional padding for nicer appearance */
+  gap: 20px; /* Space between the sections */
 }
 
-/* Ensure Who Am I takes up a significant portion */
 #who-am-i {
-  flex: 1; /* Take up as much space as possible */
-  max-width: 60%; /* Adjust width proportion */
+  /* ... other styles ... */
+  margin-bottom: 80px; /* Adjust as needed for spacing between text and button */
 }
 
-/* Ensure Spotify has a fixed width */
+.button-container {
+  text-align: center;
+  width: 100%; 
+}
 #spotify {
-  flex: 0 0 auto; /* Prevent it from resizing */
-  max-width: 40%; /* Adjust width proportion */
+  /* ... other styles ... */
 }
 .container {
   margin-right: 12%;
@@ -652,10 +648,6 @@ body {
 section {
   margin-right: 5%;
   margin-left: 5%;
-}
-.button-container {
-  text-align: center; 
-  width: 30%; /* Or a specific width if you want to constrain it */
 }
 footer {
   background-color: #f2f2f2; /* Light gray background */
