@@ -617,7 +617,7 @@ body {
   display: flex;
   justify-content: space-between; /* Adjust spacing as needed */
   align-items: flex-start; /* Align items to the top */
-  gap: 20px; /* Space between the sections */
+  gap: 10px; /* Space between the sections */
   width: 100%; /* Stretch container across the screen */
   box-sizing: border-box; /* Include padding in width calculations */
   padding: 0 20px; /* Optional padding for nicer appearance */
