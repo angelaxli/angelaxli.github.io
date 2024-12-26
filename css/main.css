@@ -26,7 +26,7 @@ h4 {
     font-size: 250%;
     font-family: "Nanum Myeongjo", serif;
     margin-top: 0;
-    margin-bottom: 7%;
+    margin-bottom: 5%;
     text-align: center;
     
 }
@@ -657,7 +657,7 @@ section {
 }
 
 .button-container {
-  margin-top: 20px; /* Add spacing above the button */
+  margin-top: 40px; /* Add spacing above the button */
 }
 
 footer {
