@@ -646,7 +646,7 @@ footer {
 .container-flex {
   display: flex;
   align-items: flex-start;
-  gap: 20px; /* Adjust gap as needed */
+  gap: 10px; /* Adjust gap as needed */
   text-align: left; 
   justify-content: center; /* Distribute space around items */
 }
@@ -672,5 +672,5 @@ footer {
 }
 
 #spotify {
-  width: 50%; /* Spotify section takes half the width */
+  width: 100%; /* Spotify section takes half the width */
 }
