@@ -628,6 +628,7 @@ section {
   margin-right: 5%;
   margin-left: 5%;
 }
+
 .container-flex {
   display: flex;
   align-items: flex-start;
@@ -658,8 +659,9 @@ section {
 }
 
 #spotify {
-  width: 80%; /* Spotify section takes half the width */
+  width: 60%; /* Spotify section takes half the width */
 }
+
 footer {
 	background-color: #FFFFFF;
   padding: 20px; 
