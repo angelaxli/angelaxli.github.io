@@ -627,7 +627,6 @@ body {
 #who-am-i {
   flex: 1; /* Take up as much space as possible */
   max-width: 60%; /* Adjust width proportion */
-	margin-bottom: 80px;
 }
 
 /* Ensure Spotify has a fixed width */
