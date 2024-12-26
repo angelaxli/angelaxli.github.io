@@ -656,5 +656,5 @@ section {
 }
 .button-container {
   text-align: center; 
-  width: 100%; /* Or a specific width if you want to constrain it */
+  width: 30%; /* Or a specific width if you want to constrain it */
 }
