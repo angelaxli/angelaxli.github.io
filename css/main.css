@@ -631,35 +631,32 @@ section {
 
 .container-flex {
   display: flex;
+  justify-content: space-between;
   align-items: flex-start;
-  gap: 10px; /* Adjust gap as needed */
-  text-align: left; 
-  justify-content: center; /* Distribute space around items */
+  gap: 20px; /* Add space between columns */
 }
 
 .left-column {
   display: flex;
-  flex-direction: column; 
-  align-items: center; 
-  width: 50%; /* Each section takes half the width */
-}
-
-#who-am-i {
-  width: 100%; /* Who am I section takes full width of its container */
-	text-align: left; 
-}
-
-.button-container {
-  width: 100%; /* Ensure the container takes full width */
-}
-
-.button { 
-  display: block;  /* Make the button a block-level element */
-  margin: 0 auto; /* Center the button horizontally */ 
+  flex-direction: column;
+  flex: 1; /* Take up the remaining width */
 }
 
 #spotify {
-  width: 60%; /* Spotify section takes half the width */
+  flex: 0 0 300px; /* Fixed width for the Spotify iframe */
+}
+
+#spotify iframe {
+  width: 100%; /* Ensure the iframe fits within the column */
+}
+
+#who-am-i {
+  margin-bottom: 20px; /* Add spacing below the section */
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-start; /* Align buttons to the left */
 }
 
 footer {
