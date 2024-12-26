@@ -65,21 +65,11 @@ body {
     color:#000000;
     margin: 0 auto;
 }
-.container {
-  margin-right: 12%;
-  margin-bottom: 10%;
-  display: block;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color:#000000;
-}
-.element{
-  margin: auto;
-    color: #b1d2ba;
-    font-weight: bold;
+script {
+    font-size: 700%;
+    font-family: "Nanum Myeongjo", serif;
     text-align: center;
-}
+}	
 .button-28 {
     appearance: none;
     background-color: transparent;
