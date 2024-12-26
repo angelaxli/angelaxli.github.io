@@ -654,7 +654,7 @@ footer {
 }
 
 #who-am-i {
-  max-width: 50%;
+  max-width: 60%;
   margin-bottom: 80px;  No need for margin-bottom here anymore */ 
 }
 
@@ -668,5 +668,5 @@ footer {
   margin: 0 auto; /* Center the button horizontally */ 
 }
 #spotify {
-  max-width: 50%;
+  max-width: 54%;
 }
