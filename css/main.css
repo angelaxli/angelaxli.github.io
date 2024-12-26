@@ -644,7 +644,7 @@ footer {
 .container-flex {
   display: flex;
   align-items: flex-start; /* Align items to the top */
-  gap: 20px; /* Space between the sections */
+  gap: 15px; /* Space between the sections */
 }
 
 .left-column {
@@ -654,15 +654,15 @@ footer {
 }
 
 #who-am-i {
-  max-width: 60%;
-  /* margin-bottom: 80px;  No need for margin-bottom here anymore */ 
+  max-width: 50%;
+  margin-bottom: 80px;  No need for margin-bottom here anymore */ 
 }
 
 .button-container {
   text-align: center;
-  max-width: 60%;
+  max-width: 50%;
 }
 
 #spotify {
-  max-width: 40%;
+  max-width: 50%;
 }
