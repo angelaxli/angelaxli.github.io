@@ -64,12 +64,9 @@ a {
 body {
     color:#000000;
     margin: 0 auto;
-}
-script {
-    font-size: 700%;
-    font-family: "Nanum Myeongjo", serif;
     text-align: center;
-}	
+}
+
 .button-28 {
     appearance: none;
     background-color: transparent;
