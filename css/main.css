@@ -626,13 +626,13 @@ body {
 /* Ensure Who Am I takes up a significant portion */
 #who-am-i {
   flex: 1; /* Take up as much space as possible */
-  max-width: 70%; /* Adjust width proportion */
+  max-width: 60%; /* Adjust width proportion */
 }
 
 /* Ensure Spotify has a fixed width */
 #spotify {
   flex: 0 0 auto; /* Prevent it from resizing */
-  max-width: 30%; /* Adjust width proportion */
+  max-width: 40%; /* Adjust width proportion */
 }
 .container {
   margin-right: 12%;
