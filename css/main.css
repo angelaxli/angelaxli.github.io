@@ -235,20 +235,25 @@ div.sub, iframe {
 }
 
 .container-flex {
-	display: flex;
-	justify-content: flex-start; /* Align items to the left */
-	align-items: flex-start; /* Align to the top */
-	gap: 20px; /* Space between the two sections */
-	margin: 20px;
-	max-width: 100%;
+  display: flex;
+  justify-content: space-between; /* Adjust spacing as needed */
+  align-items: flex-start; /* Align items to the top */
+  gap: 20px; /* Space between the sections */
+  width: 100%; /* Stretch container across the screen */
+  box-sizing: border-box; /* Include padding in width calculations */
+  padding: 0 20px; /* Optional padding for nicer appearance */
 }
 
+/* Ensure Who Am I takes up a significant portion */
 #who-am-i {
-  flex: 1; /* Take available space */
+  flex: 1; /* Take up as much space as possible */
+  max-width: 70%; /* Adjust width proportion */
 }
 
+/* Ensure Spotify has a fixed width */
 #spotify {
-  flex: 0 0 auto; /* Maintain fixed width for Spotify embed */
+  flex: 0 0 auto; /* Prevent it from resizing */
+  max-width: 30%; /* Adjust width proportion */
 }
 
 .button--piyo{
