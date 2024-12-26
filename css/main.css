@@ -639,7 +639,8 @@ section {
 .left-column {
   display: flex;
   flex-direction: column;
-  flex: 1; /* Take up the remaining width */
+  flex: 1; /* Take up remaining width */
+  align-items: center; /* Center align the content horizontally */
 }
 
 #spotify {
@@ -651,12 +652,11 @@ section {
 }
 
 #who-am-i {
-  margin-bottom: 20px; /* Add spacing below the section */
+  text-align: center; /* Center align text inside the section */
 }
 
 .button-container {
-  display: flex;
-  justify-content: flex-start; /* Align buttons to the left */
+  margin-top: 20px; /* Add spacing above the button */
 }
 
 footer {
