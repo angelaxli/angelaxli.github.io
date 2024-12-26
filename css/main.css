@@ -48,6 +48,7 @@ p{
   font-family: "Nanum Myeongjo", serif;
   font-size: 150%;
   margin: 2%;
+	text-align: left;
 }
 summary{
 	font-style: normal;
@@ -641,21 +642,24 @@ footer {
 	font-family: "Nanum Myeongjo", serif;
   /* You can add more styles here, like borders, colors, etc. */
 }
+
 .container-flex {
   display: flex;
-  align-items: flex-start; /* Align items to the top */
-  gap: 15px; /* Space between the sections */
+  align-items: flex-start;
+  gap: 20px; /* Adjust gap as needed */
+  text-align: left; 
+  justify-content: center; /* Distribute space around items */
 }
 
 .left-column {
   display: flex;
-  flex-direction: column; /* Stack children vertically */
-  align-items: center; /* Center the button horizontally */
+  flex-direction: column; 
+  align-items: center; 
+  width: 50%; /* Each section takes half the width */
 }
 
 #who-am-i {
-  max-width: 60%;
-	text-align: left;
+  width: 100%; /* Who am I section takes full width of its container */
 }
 
 .button-container {
@@ -668,5 +672,5 @@ footer {
 }
 
 #spotify {
-  max-width: 40%;
+  width: 50%; /* Spotify section takes half the width */
 }
