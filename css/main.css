@@ -659,10 +659,14 @@ footer {
 }
 
 .button-container {
-  text-align: center;
-  max-width: 50%;
+  /* text-align: center; Remove this */
+  width: 100%; /* Ensure the container takes full width */
 }
 
+.button { 
+  display: block;  /* Make the button a block-level element */
+  margin: 0 auto; /* Center the button horizontally */ 
+}
 #spotify {
   max-width: 50%;
 }
