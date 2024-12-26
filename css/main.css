@@ -48,13 +48,9 @@ p{
   font-family: "Nanum Myeongjo", serif;
   font-size: 150%;
   margin: 2%;
-	text-align: left;
 }
 summary{
 	font-style: normal;
-}
-footer{
-	background: #666666;
 }
 a {
 	font-family: "Nanum Myeongjo", serif;
@@ -649,6 +645,7 @@ section {
 
 #who-am-i {
   width: 100%; /* Who am I section takes full width of its container */
+	text-align: left; 
 }
 
 .button-container {
@@ -667,7 +664,7 @@ footer {
 	background-color: #FFFFFF;
   padding: 20px; 
   text-align: center;
-  font-size: 14px; /* Adjust font size as needed */
+  font-size: 16px; /* Adjust font size as needed */
   margin-top: 50px; /* Space between content and footer */
   width: 100%; 
 	font-family: "Nanum Myeongjo", serif;
