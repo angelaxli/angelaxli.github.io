@@ -649,3 +649,7 @@ body {
     font-weight: bold;
     text-align: center;
 }
+section {
+  margin-right: 5%;
+  margin-left: 5%;
+}
