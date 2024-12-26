@@ -654,7 +654,7 @@ footer {
 }
 
 #who-am-i {
-  max-width: 50%;
+  max-width: 60%;
 	text-align: left;
 }
 
@@ -666,6 +666,7 @@ footer {
   display: block;  /* Make the button a block-level element */
   margin: 0 auto; /* Center the button horizontally */ 
 }
+
 #spotify {
-  max-width: 50%;
+  max-width: 40%;
 }
