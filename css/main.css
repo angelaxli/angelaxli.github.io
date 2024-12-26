@@ -647,15 +647,22 @@ footer {
   gap: 20px; /* Space between the sections */
 }
 
+.left-column {
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  align-items: center; /* Center the button horizontally */
+}
+
 #who-am-i {
-  max-width: 60%
-  margin-bottom: 80px; /* Adjust as needed for spacing between text and button */
+  max-width: 60%;
+  /* margin-bottom: 80px;  No need for margin-bottom here anymore */ 
 }
 
 .button-container {
   text-align: center;
-  max-width: 60%
+  max-width: 60%;
 }
+
 #spotify {
-  max-width: 40%
+  max-width: 40%;
 }
