@@ -632,6 +632,7 @@ section {
   margin-left: 5%;
 }
 footer {
+	background-color: #FFFFFF;
   padding: 20px; 
   text-align: center;
   font-size: 14px; /* Adjust font size as needed */
