@@ -34,12 +34,6 @@ h5 {
   font-family: "Nanum Myeongjo", serif;
   font-size: 300%;
 }
-p{
-  font-family: "Nanum Myeongjo", serif;
-  font-size: 150%;
-  margin: 2%;
-}
-
 header {
   margin-bottom: 12%;
 }
@@ -49,6 +43,11 @@ hr {
   margin-top: 13%;
   margin-left: 10%;
   margin-right: 10%;
+}
+p{
+  font-family: "Nanum Myeongjo", serif;
+  font-size: 150%;
+  margin: 2%;
 }
 summary{
 	font-style: normal;
@@ -201,29 +200,6 @@ div.sub, iframe {
     margin-bottom: 3%;
     background-color: #ffffff;
 }
-
-.container-flex {
-  display: flex;
-  justify-content: space-between; /* Adjust spacing as needed */
-  align-items: flex-start; /* Align items to the top */
-  gap: 20px; /* Space between the sections */
-  width: 100%; /* Stretch container across the screen */
-  box-sizing: border-box; /* Include padding in width calculations */
-  padding: 0 20px; /* Optional padding for nicer appearance */
-}
-
-/* Ensure Who Am I takes up a significant portion */
-#who-am-i {
-  flex: 1; /* Take up as much space as possible */
-  max-width: 70%; /* Adjust width proportion */
-}
-
-/* Ensure Spotify has a fixed width */
-#spotify {
-  flex: 0 0 auto; /* Prevent it from resizing */
-  max-width: 30%; /* Adjust width proportion */
-}
-
 .button--piyo{
   --main_color : #f4cf47 ;
   --sub_color1 : #f4e19c ;
@@ -637,4 +613,26 @@ div.sub, iframe {
 }
 .button:not(:last-child){
   margin-bottom : 80px ;
+}
+
+.container-flex {
+  display: flex;
+  justify-content: space-between; /* Adjust spacing as needed */
+  align-items: flex-start; /* Align items to the top */
+  gap: 20px; /* Space between the sections */
+  width: 100%; /* Stretch container across the screen */
+  box-sizing: border-box; /* Include padding in width calculations */
+  padding: 0 20px; /* Optional padding for nicer appearance */
+}
+
+/* Ensure Who Am I takes up a significant portion */
+#who-am-i {
+  flex: 1; /* Take up as much space as possible */
+  max-width: 70%; /* Adjust width proportion */
+}
+
+/* Ensure Spotify has a fixed width */
+#spotify {
+  flex: 0 0 auto; /* Prevent it from resizing */
+  max-width: 30%; /* Adjust width proportion */
 }
