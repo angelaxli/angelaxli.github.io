@@ -655,11 +655,10 @@ footer {
 
 #who-am-i {
   max-width: 60%;
-  margin-bottom: 80px;  No need for margin-bottom here anymore */ 
+	text-align: left;
 }
 
 .button-container {
-  /* text-align: center; Remove this */
   width: 100%; /* Ensure the container takes full width */
 }
 
