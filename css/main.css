@@ -612,24 +612,6 @@ body {
 .button:not(:last-child){
   margin-bottom : 80px ;
 }
-.container-flex {
-  display: flex;
-  align-items: flex-start; /* Align items to the top */
-  gap: 20px; /* Space between the sections */
-}
-
-#who-am-i {
-  /* ... other styles ... */
-  margin-bottom: 80px; /* Adjust as needed for spacing between text and button */
-}
-
-.button-container {
-  text-align: center;
-  width: 100%; 
-}
-#spotify {
-  /* ... other styles ... */
-}
 .container {
   margin-right: 12%;
   margin-bottom: 10%;
@@ -658,4 +640,22 @@ footer {
   width: 100%; 
 	font-family: "Nanum Myeongjo", serif;
   /* You can add more styles here, like borders, colors, etc. */
+}
+.container-flex {
+  display: flex;
+  align-items: flex-start; /* Align items to the top */
+  gap: 20px; /* Space between the sections */
+}
+
+#who-am-i {
+  max-width: 60%
+  margin-bottom: 80px; /* Adjust as needed for spacing between text and button */
+}
+
+.button-container {
+  text-align: center;
+  max-width: 60%
+}
+#spotify {
+  max-width: 40%
 }
