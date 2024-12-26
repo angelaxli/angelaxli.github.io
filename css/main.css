@@ -650,11 +650,12 @@ section {
   margin-left: 5%;
 }
 footer {
-  background-color: #f2f2f2; /* Light gray background */
+  background-color: #000000; /* Light gray background */
   padding: 20px; 
   text-align: center;
   font-size: 14px; /* Adjust font size as needed */
   margin-top: 50px; /* Space between content and footer */
   width: 100%; 
+	font-family: "Nanum Myeongjo", serif;
   /* You can add more styles here, like borders, colors, etc. */
 }
