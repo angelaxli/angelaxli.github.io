@@ -98,7 +98,7 @@ body {
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
-    width: 100%;
+    width: 25%;
     will-change: transform;
     justify-content: center;
     align-items: center;
