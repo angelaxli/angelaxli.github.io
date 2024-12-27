@@ -44,7 +44,7 @@ header {
 hr {
   border-top: 1px solid #b1d2ba;
   margin-bottom: 5%;
-  margin-top: 13%;
+  margin-top: 10%;
   margin-left: 10%;
   margin-right: 10%;
 }
@@ -591,7 +591,7 @@ body {
   flex-wrap: wrap; /* Wrap content to avoid overflow */
   justify-content: space-between; /* Distribute items evenly */
   max-width: 100%; /* Ensure it doesn't overflow */
-  padding: 10%; /* Add padding to prevent content touching edges */
+  padding: 8%; /* Add padding to prevent content touching edges */
   box-sizing: border-box; /* Include padding and border in width calculations */
 }
 .left-column {
@@ -610,7 +610,7 @@ body {
   text-align: center; /* Center align text inside the section */
 }
 .button-container {
-  margin-top: 6%; /* Add spacing above the button */
+  margin-top: 10%; /* Add spacing above the button */
 }
 
 footer {
@@ -683,7 +683,6 @@ input[type=submit]:hover {
 .contact-and-social {
 	display: flex;
 	max-width: 100%
-	padding: 10%;
 	margin: 10%
 }
 .contact-form-container {
