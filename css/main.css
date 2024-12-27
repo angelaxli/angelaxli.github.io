@@ -686,8 +686,10 @@ input[type=submit]:hover {
 }
 .contact-form-container {
 	flex: 1;
+	max-width: 60%;
 	margin: 10px;
 }
-.contact-form-container: first-child {
-	margin-right: 20px;
+
+.social-buttons {
+	max-width: 40%;
 }
