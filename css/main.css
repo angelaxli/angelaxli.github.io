@@ -663,6 +663,32 @@ input[type=submit] {
 input[type=submit]:hover {
   background-color: #45a049;
 }
+
+/* contact form and button side by side */
+#contact-form-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
 .form-group input,
 .form-group textarea {
   padding: 8px;
@@ -700,36 +726,34 @@ input[type=submit]:hover {
   background-color: #45a049;
 }
 
-/* Ensure the form is responsive */
-@media (max-width: 768px) {
-  #contact-form-container {
-    padding: 1rem;
-  }
-}
-#contact-form-container {
-  max-width: 800px; /* Increased width to accommodate horizontal layout */
-  margin: 2rem auto;
-  padding: 1.5rem;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+#social-buttons-container {
   display: flex;
-  justify-content: space-between; /* Adjust alignment between form and buttons */
-  align-items: flex-start;
+  justify-content: center;
   gap: 20px;
-}
-
-#contact-form {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  margin-top: 20px;
 }
 
 .social-buttons {
   display: flex;
-  flex-direction: column; /* Keep buttons in a column */
-  gap: 10px;
-  justify-content: center; /* Center buttons vertically */
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.social-buttons form {
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  #contact-form-container {
+    padding: 1rem;
+  }
+
+  #social-buttons-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .social-buttons {
+    flex-direction: column;
+  }
 }
