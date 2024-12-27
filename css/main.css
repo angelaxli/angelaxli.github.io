@@ -592,6 +592,7 @@ body {
   max-width: 100%; /* Ensure it doesn't overflow */
   padding: 8%; /* Add padding to prevent content touching edges */
   box-sizing: border-box; /* Include padding and border in width calculations */
+	margin: 5%
 }
 .left-column {
   display: flex;
