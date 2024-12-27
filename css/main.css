@@ -733,3 +733,10 @@ input[type=submit]:hover {
   gap: 10px;
   justify-content: center; /* Center buttons vertically */
 }
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Adjust height as needed */
+  text-align: center;
+}
