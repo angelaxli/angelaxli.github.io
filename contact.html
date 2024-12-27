@@ -29,56 +29,56 @@
 </header>
 <body>
 	<h2> Contact Me!</h2>
-	<section id="contact-form-container">
-		<form id="contact-form" method="POST" action="https://formspree.io/f/xbllgnpj">
-			<div class="form-group">
-				<label for="name">Name</label>
-				<input type="text" id="name" name="name" placeholder="Your Name" required />
+	<div class = "contact-and-social">
+		<div class="contact-form-container">
+			<form id="contact-form" method="POST" action="https://formspree.io/f/xbllgnpj">
+				<div class="form-group">
+					<label for="name">Name</label>
+					<input type="text" id="name" name="name" placeholder="Your Name" required />
+				</div>
+				<div class="form-group">
+					<label for="email">Email</label>
+					<input type="email" id="email" name="email" placeholder="Your Email" required />
+				</div>
+				<div class="form-group">
+					<label for="message">Message</label>
+					<textarea id="message" name="message" placeholder="Your Message" required></textarea>
+				</div>
+				<button type="submit" class="btn-submit">Send</button>
+			</form>
+			<div id="confirmation-message" style="display: none; text-align: center; margin-top: 1rem; color: green;">
+				Thank you! Your message has been sent.
 			</div>
-			<div class="form-group">
-				<label for="email">Email</label>
-				<input type="email" id="email" name="email" placeholder="Your Email" required />
-			</div>
-			<div class="form-group">
-				<label for="message">Message</label>
-				<textarea id="message" name="message" placeholder="Your Message" required></textarea>
-			</div>
-			<button type="submit" class="btn-submit">Send</button>
-		</form>
-		<div id="confirmation-message" style="display: none; text-align: center; margin-top: 1rem; color: green;">
-			Thank you! Your message has been sent.
 		</div>
-	</section>
-	<script>
-		document.getElementById("contact-form").addEventListener("submit", async function (e) {
-			e.preventDefault(); // Prevent default form submission
+		<script>
+			document.getElementById("contact-form").addEventListener("submit", async function (e) {
+				e.preventDefault(); // Prevent default form submission
 			
-			const form = e.target;
-			const formData = new FormData(form);
+				const form = e.target;
+				const formData = new FormData(form);
 			
-			try {
-				// Send the form data using fetch
-				const response = await fetch(form.action, {
-					method: form.method,
-					body: formData,
-					headers: {
-						Accept: "application/json",
-					},
-				});
-				if (response.ok) {
-					// Show confirmation message
-					document.getElementById("confirmation-message").style.display = "block";
-					// Reset form fields
-					form.reset();
-				} else {
-					alert("There was an issue sending your message. Please try again.");
+				try {
+					// Send the form data using fetch
+					const response = await fetch(form.action, {
+						method: form.method,
+						body: formData,
+						headers: {
+							Accept: "application/json",
+						},
+					});
+					if (response.ok) {
+						// Show confirmation message
+						document.getElementById("confirmation-message").style.display = "block";
+						// Reset form fields
+						form.reset();
+					} else {
+						alert("There was an issue sending your message. Please try again.");
+					}
+				} catch (error) {
+					alert("Something went wrong. Please try again later.");
 				}
-			} catch (error) {
-				alert("Something went wrong. Please try again later.");
-			}
-		});
-	</script>
-	<section id="social-buttons-container">
+			});
+		</script>
 		<div class="social-buttons">
 			<form action="https://www.linkedin.com/in/angela-li-a75964263/">
 				<button class="button-28" role="button">Linkedin</button>
@@ -93,7 +93,6 @@
 				<button class="button-28" role="button">Pinterest</button>
 			</form>
 		</div>
-	</section>
 	<footer>
 		<p>&copy; 2024 Angela Li. All rights reserved.</p> 
 	</footer>
