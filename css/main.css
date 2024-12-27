@@ -28,6 +28,8 @@ h2{
 	font-size: 700%;
 	font-family: "Nanum Myeongjo", serif;
 	text-align: center;
+	display: block;
+	width: 100%;
 }
 h3 {
 	font-size: 700%;
