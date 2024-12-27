@@ -21,18 +21,18 @@
 h1 {
 	font-size: 200%;
 	font-family: 'new_spiritsemibold', serif;
-  font-weight: 900;
-  color: #000000
+	font-weight: 900;
+	color: #000000
 }
 h2{
-    font-size: 700%;
-    font-family: "Nanum Myeongjo", serif;
+	font-size: 700%;
+	font-family: "Nanum Myeongjo", serif;
 	text-align: center;
 }
 h3 {
-    font-size: 700%;
-    font-family: "Nanum Myeongjo", serif;
-    text-align: left;
+	font-size: 700%;
+	font-family: "Nanum Myeongjo", serif;
+	text-align: left;
 	margin-left: 10%
 }
 h4 {
