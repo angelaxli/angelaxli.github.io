@@ -774,4 +774,18 @@ input[type=submit]:hover {
     padding: 0.5rem;
   }
 }
-
+.container {
+  margin-right: 12%;
+  margin-bottom: 10%;
+  display: block;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color:#000000;
+}
+.element{
+  margin: auto;
+    color: #b1d2ba;
+    font-weight: bold;
+    text-align: center;
+}
