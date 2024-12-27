@@ -683,13 +683,24 @@ input[type=submit]:hover {
 	display: flex;
 	max-width: 100%
 	margin: 10%
+	justify-content: space-between;
+	padding: 10%;
+	box-sizing: border-box;
 }
 .contact-form-container {
+	display: flex;
 	flex: 1;
+	align-items: center;
 	max-width: 60%;
-	margin: 10px;
+	margin: 10%;
+	gap: 20px;
 }
 
 .social-buttons {
 	max-width: 40%;
+	gap: 10px;
+	flex-direction: column;
+}
+.social-buttons form {
+  width: 100%; /* Ensure each button takes full width */
 }
