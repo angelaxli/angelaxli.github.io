@@ -680,20 +680,18 @@ input[type=submit]:hover {
 	text-align: center;
 }
 /* contact me page */
-.contact-and-social {
+.contact-and-social{
 	display: flex;
-	gap: 10px;
 	margin: 10%
-	justify-content: space-between;
 	box-sizing: border-box;
 }
-.contact-form-container {
+.contact-form-container{
 	display: flex;
 	flex: 60%;
 	align-items: center;
 }
 
-.social-buttons {
+.social-buttons{
 	flex: 40%;
 	gap: 10px;
 	flex-direction: column;
