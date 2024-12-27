@@ -678,9 +678,10 @@ input[type=submit]:hover {
 	font-weight: bold;
 	text-align: center;
 }
-
+/* contact me page */
 .contact-and-social {
 	display: flex;
+	gap: 20px;
 	max-width: 100%
 	margin: 10%
 	justify-content: space-between;
@@ -689,18 +690,24 @@ input[type=submit]:hover {
 }
 .contact-form-container {
 	display: flex;
-	flex: 1;
+	flex: 60%;
 	align-items: center;
-	max-width: 60%;
 	margin: 10%;
-	gap: 20px;
+	
 }
 
 .social-buttons {
-	
+	flex: 40%;
 	gap: 10px;
 	flex-direction: column;
 }
-.social-buttons form {
-	width: 100%; /* Ensure each button takes full width */
+
+/* Styles for responsiveness */
+@media (max-width: 768px) { 
+  .contact-and-social {
+    flex-direction: column; /* Stack vertically on smaller screens */
+  }
+  .contact-form-container, .social-buttons {
+    flex: 100%;            /* Each takes full width on smaller screens */
+  }
 }
