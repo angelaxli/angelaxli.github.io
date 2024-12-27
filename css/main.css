@@ -769,3 +769,15 @@ input[type=submit]:hover {
 	font-weight: bold;
 	text-align: center;
 }
+.contact-and-social {
+	display: flex;
+	max-width: 50%
+	padding: 10%;
+}
+.contact-form-container {
+	flex: 1;
+	margin: 10px;
+}
+.contact-form-container: first-child {
+	margin-right: 20px;
+}
