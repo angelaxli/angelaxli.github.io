@@ -683,7 +683,6 @@ input[type=submit]:hover {
 .contact-and-social {
 	display: flex;
 	gap: 20px;
-	max-width: 100%
 	margin: 10%
 	justify-content: space-between;
 	padding: 10%;
@@ -693,8 +692,7 @@ input[type=submit]:hover {
 	display: flex;
 	flex: 60%;
 	align-items: center;
-	margin: 10%;
-	
+	margin: 10%;	
 }
 
 .social-buttons {
