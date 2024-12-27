@@ -683,6 +683,7 @@ input[type=submit]:hover {
 	display: flex;
 	max-width: 50%
 	padding: 10%;
+	margin: 10%
 }
 .contact-form-container {
 	flex: 1;
