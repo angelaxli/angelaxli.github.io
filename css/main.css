@@ -697,10 +697,10 @@ input[type=submit]:hover {
 }
 
 .social-buttons {
-	max-width: 40%;
+	
 	gap: 10px;
 	flex-direction: column;
 }
 .social-buttons form {
-  width: 100%; /* Ensure each button takes full width */
+	width: 100%; /* Ensure each button takes full width */
 }
