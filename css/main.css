@@ -650,24 +650,24 @@ body {
 
 /* contact me page */
 .contact-and-social {
-	display: flex;
-	max-width: 100%; /* Ensure it doesn't overflow */
-	padding: 8%; /* Add padding to prevent content touching edges */
-	box-sizing: border-box; /* Include padding and border in width calculations */
-	justify-content: center;
+  display: flex;
+  max-width: 100%; 
+  padding: 8%; 
+  box-sizing: border-box; 
+  justify-content: center; 
 }
 .contact-form-container {
-	display: flex;
-	flex-direction: column;
-	flex: 1; 
-	margin: 10%;
-	align-items: center; 
-	justify-content: center;
+  display: flex;
+  flex-direction: column;
+  flex: 65; /* Contact form takes 65% of the space */
+  margin: 10%;
+  align-items: center; 
+  justify-content: center;
 }
 .social-buttons {
-	flex: 30%;
-	flex-direction: column;
-	justify-content: center;
+  flex: 35; /* Social buttons take 35% of the space */
+  flex-direction: column;
+  justify-content: center;
 }
 
 #contact-form {
