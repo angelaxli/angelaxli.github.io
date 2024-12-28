@@ -695,8 +695,8 @@ input[type=submit]:hover {
 }
 
 .social-buttons{
-	flex: 1000%;
-	gap: 10px;
+	flex: 100%;
+	gap: 5px;
 	flex-direction: column;
 	justify-content: center;
 }
