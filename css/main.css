@@ -708,25 +708,6 @@ body {
     flex-direction: column;
     gap: 10px;
 }
-
-.social-buttons .button-28 {
-    background-color: #0073b1;
-    color: white;
-    border: none;
-    padding: 15px; /* Increased padding for better appearance */
-    border-radius: 5px;
-    text-align: center;
-    font-size: 16px; /* Increased font size for better readability */
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    width: 100%; /* Ensure buttons take up the full width of the container */
-    box-sizing: border-box; /* Account for padding in width calculation */
-}
-
-.social-buttons .button-28:hover {
-    background-color: #005682;
-}
-
 .social-buttons form {
     margin: 0;
 }
