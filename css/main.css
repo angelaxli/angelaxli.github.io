@@ -547,10 +547,10 @@ body {
 	justify-content: center;
 }
 .left-column {
-  display: flex;
-  flex-direction: column;
-  flex: 1; 
-  align-items: center; 
+	display: flex;
+	flex-direction: column;
+	flex: 1; 
+	align-items: center; 
 	justify-content: center;
 }
 #spotify {
@@ -623,10 +623,13 @@ body {
 }
 
 .contact-form-container label {
-    display: block;
-    font-size: 16px;
-    margin-bottom: 5px;
-    color: #333;
+	display: block;
+	font-size: 25px;
+	margin-bottom: 5px;
+	color: #333;
+	text-align: left; 
+}
+
 }
 
 .contact-form-container input,
