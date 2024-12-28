@@ -682,17 +682,18 @@ input[type=submit]:hover {
 /* contact me page */
 .contact-and-social{
 	display: flex;
-	margin: 10%
+	max-width: 100%;
+	padding: 10%
 	box-sizing: border-box;
 }
 .contact-form-container{
 	display: flex;
-	flex: 60%;
+	flex: 1;
 	align-items: center;
 }
 
 .social-buttons{
-	flex: 40%;
+	flex: 70%;
 	gap: 10px;
 	flex-direction: column;
 }
