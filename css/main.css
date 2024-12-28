@@ -606,6 +606,7 @@ body {
     justify-content: space-between;
     align-items: flex-start;
     margin: 20px 0;
+	font-family: "Nanum Myeongjo", serif;
 }
 
 .contact-form-container {
