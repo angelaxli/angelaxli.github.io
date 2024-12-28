@@ -682,7 +682,7 @@ body {
     font-size: 150%;
     cursor: pointer;
     transition: all 0.3s ease;
-    width: 100%; /* Full width of the container */
+    width: 80%; /* Full width of the container */
     box-sizing: border-box; /* Include padding and border in width */
     flex-grow: 1; /* Make all buttons the same height */
 	font-family: "Nanum Myeongjo", serif;
