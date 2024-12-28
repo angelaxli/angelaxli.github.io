@@ -588,7 +588,7 @@ body {
 .container-flex {
   display: flex;
   flex-wrap: wrap; /* Wrap content to avoid overflow */
-  justify-content: space-between; /* Distribute items evenly */
+  
   max-width: 100%; /* Ensure it doesn't overflow */
   padding: 8%; /* Add padding to prevent content touching edges */
   box-sizing: border-box; /* Include padding and border in width calculations */
@@ -601,7 +601,7 @@ body {
   align-items: center; 
 }
 #spotify {
-  flex: 0 0 500px; /* Fixed width for the Spotify iframe */
+  flex: 0 0 600px; /* Fixed width for the Spotify iframe */
 }
 #spotify iframe {
   max-width: 100%; /* Ensure iframe doesn't exceed its container */
