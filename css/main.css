@@ -650,108 +650,74 @@ body {
 
 /* contact me page */
 .contact-and-social {
-  display: flex;
-  max-width: 100%; 
-  padding: 8%; 
-  box-sizing: border-box; 
-  justify-content: center; 
-}
-.contact-form-container {
-  display: flex;
-  flex-direction: column;
-  flex: 65; /* Contact form takes 65% of the space */
-  margin: 10%;
-  align-items: center; 
-  justify-content: center;
-	width: 100%; 
-}
-.social-buttons {
-  flex: 35; /* Social buttons take 35% of the space */
-  width: 100%;
-	flex-direction: column;
-  justify-content: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 20px 0;
 }
 
-#contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.contact-form-container {
+    flex: 0 0 65%;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-.form-group {
-  display: flex;
-  flex-direction: column;
+
+.contact-form-container .form-group {
+    margin-bottom: 15px;
 }
-.form-group input,
-.form-group textarea {
-  padding: 8px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+
+.contact-form-container label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #333;
 }
-#contact-form label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: bold;
-  color: #555;
+
+.contact-form-container input,
+.contact-form-container textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
 }
-#contact-form input:focus,
-#contact-form textarea:focus {
-  outline: none;
-  border-color: #4caf50;
-  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+
+.contact-form-container button.btn-submit {
+    background-color: #b1dd8c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
-#contact-form .btn-submit {
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  background-color: #4caf50;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  text-align: center;
+
+.contact-form-container button.btn-submit:hover {
+    background-color: #9cc97e;
 }
-#contact-form .btn-submit:hover {
-  background-color: #45a049;
+
+.social-buttons {
+    flex: 0 0 35%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
-/* Contact Form: Style inputs with type="text", select elements and text areas */
-input[type=text], select, textarea {
-	font-family: "Nanum Myeongjo", serif;
-	width: 100%; /* Full width */
-	padding: 12px; /* Some padding */ 
-  	border: 1px solid #ccc; /* Gray border */
-  	border-radius: 4px; /* Rounded borders */
-  	box-sizing: border-box; /* Make sure that padding and width stays in place */
-  	margin-top: 6px; /* Add a top margin */
-  	margin-bottom: 16px; /* Bottom margin */
-  	resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+.social-buttons form {
+    margin: 0;
 }
-/* Style the submit button with a specific background color etc */
-input[type=submit] {
-	font-family: "Nanum Myeongjo", serif;
-  	background-color: #04AA6D;
-  	color: white;
-  	padding: 12px 20px;
-  	border: none;
-  	border-radius: 4px;
-  	cursor: pointer;
-	font-family: "Nanum Myeongjo", serif;
-}
-/* When moving the mouse over the submit button, add a darker green color */
-input[type=submit]:hover {
-  	background-color: #000000;
-}
-@media (max-width: 480px) {
-  #contact-form-container {
-    max-width: 100%;
-    padding: 0.5rem;
-  }
-}
-/* Styles for responsiveness */
-@media (max-width: 768px) { 
-  .contact-and-social {
-    flex-direction: column; /* Stack vertically on smaller screens */
-  }
-  .contact-form-container, .social-buttons {
-    flex: 100%;            /* Each takes full width on smaller screens */
-  }
+
+@media (max-width: 768px) {
+    .contact-and-social {
+        flex-direction: column;
+    }
+
+    .contact-form-container,
+    .social-buttons {
+        flex: 0 0 100%;
+    }
 }
