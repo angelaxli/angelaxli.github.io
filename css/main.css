@@ -608,16 +608,15 @@ body {
     margin: 20px 0;
 	font-family: "Nanum Myeongjo", serif;
 }
-
 .contact-form-container {
-    flex: 0 0 55%;
+    flex: 0 0 65%;
     padding: 20px;
     box-sizing: border-box;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-left: 8%; /* Add margin to separate from the social buttons */
-	gap: 20px;
+    background-color: white; /* White background */
+    border: 1px solid black; /* Thin black border */
+    border-radius: 10px; /* Optional: rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow */
+    margin-left: 20px; /* Adds spacing between the contact form and social buttons */
 }
 
 .contact-form-container .form-group {
