@@ -670,6 +670,7 @@ body {
     align-items: stretch; /* Ensure all buttons have the same width */
     height: 100%; /* Match the height of the contact form */
     margin-right: 20px; /* Adds spacing on the right of the buttons */
+	gap: 10px;
 }
 
 .social-buttons .button-28 {
