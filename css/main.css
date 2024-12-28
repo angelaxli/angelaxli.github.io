@@ -630,8 +630,7 @@ body {
 	color: #333;
 	text-align: left; 
 }
-.contact-form-container input,
-.contact-form-container textarea {
+.contact-form-container input {
     width: 100%;
     padding: 10px;
     font-size: 14px;
@@ -639,7 +638,15 @@ body {
     border-radius: 5px;
     box-sizing: border-box;
 }
-
+.contact-form-container textarea {
+    width: 100%; /* Fixed width */
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    resize: vertical; 
+}
 .contact-form-container button.btn-submit {
     background-color: #b1dd8c;
     color: white;
@@ -656,33 +663,38 @@ body {
 }
 
 .social-buttons {
-	flex: 0 0 45%;
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-	margin-right: 8%;
+    flex: 0 0 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Space buttons equally */
+    align-items: stretch; /* Ensure all buttons have the same width */
+    height: 100%; /* Match the height of the contact form */
+    margin-right: 20px; /* Adds spacing on the right of the buttons */
 }
-.social-buttons form {
-    margin: 0;
-}
+
 .social-buttons .button-28 {
-    background-color: white; /* White background */
-    color: black; /* Black text */
-    border: 2px solid black; /* Black border */
-    padding: 15px; /* Padding for better appearance */
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    padding: 15px;
     border-radius: 5px;
     text-align: center;
-    font-size: 16px; /* Font size for readability */
+    font-size: 16px;
     cursor: pointer;
-    transition: all 0.3s ease; /* Smooth transition for hover effect */
-    max-width: 100%; /* Ensure buttons take up the full width of the container */
-    box-sizing: border-box; /* Account for padding in width calculation */
+    transition: all 0.3s ease;
+    width: 100%; /* Full width of the container */
+    box-sizing: border-box; /* Include padding and border in width */
+    flex-grow: 1; /* Make all buttons the same height */
 	font-family: "Nanum Myeongjo", serif;
 }
 
+.social-buttons .button-28 + .button-28 {
+    margin-top: 10px; /* Adds spacing between buttons */
+}
+
 .social-buttons .button-28:hover {
-    background-color: black; /* Black background on hover */
-    color: white; /* White text on hover */
+    background-color: black;
+    color: white;
     border: 2px solid white; /* Optional: white border on hover */
 }
 
