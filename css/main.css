@@ -675,8 +675,9 @@ body {
     font-size: 16px; /* Font size for readability */
     cursor: pointer;
     transition: all 0.3s ease; /* Smooth transition for hover effect */
-    width: 100%; /* Ensure buttons take up the full width of the container */
+    max-width: 80%; /* Ensure buttons take up the full width of the container */
     box-sizing: border-box; /* Account for padding in width calculation */
+	font-family: "Nanum Myeongjo", serif;
 }
 
 .social-buttons .button-28:hover {
