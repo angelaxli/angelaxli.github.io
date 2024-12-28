@@ -602,7 +602,7 @@ body {
 	justify-content: center;
 }
 #spotify {
-  flex: 0 0 600px; /* Fixed width for the Spotify iframe */
+  flex: 0 0 500px; /* Fixed width for the Spotify iframe */
 	justify-content: center;
 }
 
