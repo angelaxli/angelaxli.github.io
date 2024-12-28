@@ -584,7 +584,7 @@ body {
   }
 }
 
-
+/*front page intro */
 .container-flex {
   display: flex;
   flex-wrap: wrap; /* Wrap content to avoid overflow */
@@ -683,6 +683,7 @@ input[type=submit]:hover {
 	text-align: center;
 }
 /* contact me page */
+
 .contact-and-social{
 	display: flex;
 	max-width: 100%;
@@ -694,6 +695,7 @@ input[type=submit]:hover {
 	display: flex;
 	flex: 100%;
 	align-items: center;
+	margin: 10%
 	justify-content: center;
 }
 
