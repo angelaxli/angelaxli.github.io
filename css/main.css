@@ -663,7 +663,7 @@ body {
     background-color: #f9f9f9;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-left: 20px; /* Add margin to separate from the social buttons */
+    margin-left: 10%; /* Add margin to separate from the social buttons */
 }
 
 .contact-form-container .form-group {
