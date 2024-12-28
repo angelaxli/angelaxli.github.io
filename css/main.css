@@ -65,54 +65,6 @@ body {
     text-align: center;
 	font-family: "Nanum Myeongjo", serif;
 }
-/* contact me and social media button style */
-.button-28 {
-    appearance: none;
-    background-color: transparent;
-    border: 2px solid #1A1A1A;
-    border-radius: 15px;
-    box-sizing: border-box;
-    color: #3B3B3B;
-    cursor: pointer;
-    display: inline-block;
-    font-family: "Nanum Myeongjo", serif;
-    font-size: 20px;
-    font-weight: 600;
-    line-height: normal;
-    margin: 5%;
-    min-height: 6px;
-    min-width: 6px;
-    outline: none;
-    padding: 16px 24px;
-    text-align: center;
-    text-decoration: none;
-    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    width: 25%;
-    will-change: transform;
-    justify-content: center;
-    align-items: center;
-}
-.button-28:disabled {
-    pointer-events: none;
-}
-.button-28:hover {
-    color: #fff;
-    background-color: #1A1A1A;
-    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
-    transform: translateY(-2px);
-}
-.button-28:active {
-    box-shadow: none;
-    transform: translateY(0);
-    .topnav {
-      position: relative;
-      background-color: #333;
-      overflow: hidden;
-    }
-}
 
 /* AL logo design + navigation bar */
 #rc_logo {
@@ -711,6 +663,25 @@ body {
 }
 .social-buttons form {
     margin: 0;
+}
+.social-buttons .button-28 {
+    background-color: white; /* White background */
+    color: black; /* Black text */
+    border: 2px solid black; /* Black border */
+    padding: 15px; /* Padding for better appearance */
+    border-radius: 5px;
+    text-align: center;
+    font-size: 16px; /* Font size for readability */
+    cursor: pointer;
+    transition: all 0.3s ease; /* Smooth transition for hover effect */
+    width: 100%; /* Ensure buttons take up the full width of the container */
+    box-sizing: border-box; /* Account for padding in width calculation */
+}
+
+.social-buttons .button-28:hover {
+    background-color: black; /* Black background on hover */
+    color: white; /* White text on hover */
+    border: 2px solid white; /* Optional: white border on hover */
 }
 
 @media (max-width: 768px) {
