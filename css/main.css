@@ -588,21 +588,24 @@ body {
 .container-flex {
   display: flex;
   flex-wrap: wrap; /* Wrap content to avoid overflow */
-  
   max-width: 100%; /* Ensure it doesn't overflow */
   padding: 8%; /* Add padding to prevent content touching edges */
   box-sizing: border-box; /* Include padding and border in width calculations */
 	margin: 5%
+	justify-content: center;
 }
 .left-column {
   display: flex;
   flex-direction: column;
   flex: 1; 
   align-items: center; 
+	justify-content: center;
 }
 #spotify {
   flex: 0 0 600px; /* Fixed width for the Spotify iframe */
+	justify-content: center;
 }
+
 #spotify iframe {
   max-width: 100%; /* Ensure iframe doesn't exceed its container */
 }
