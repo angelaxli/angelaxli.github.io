@@ -632,41 +632,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Contact Form: Style inputs with type="text", select elements and textareas */
-input[type=text], select, textarea {
-	font-family: "Nanum Myeongjo", serif;
-	width: 100%; /* Full width */
-	padding: 12px; /* Some padding */ 
-  	border: 1px solid #ccc; /* Gray border */
-  	border-radius: 4px; /* Rounded borders */
-  	box-sizing: border-box; /* Make sure that padding and width stays in place */
-  	margin-top: 6px; /* Add a top margin */
-  	margin-bottom: 16px; /* Bottom margin */
-  	resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
-}
-/* Style the submit button with a specific background color etc */
-input[type=submit] {
-	font-family: "Nanum Myeongjo", serif;
-  	background-color: #04AA6D;
-  	color: white;
-  	padding: 12px 20px;
-  	border: none;
-  	border-radius: 4px;
-  	cursor: pointer;
-	font-family: "Nanum Myeongjo", serif;
-}
-
-/* When moving the mouse over the submit button, add a darker green color */
-input[type=submit]:hover {
-  	background-color: #000000;
-}
-
-@media (max-width: 480px) {
-  #contact-form-container {
-    max-width: 100%;
-    padding: 0.5rem;
-  }
-}
 /* typing effect */
 .container {
 	margin-bottom: 10%;
@@ -682,14 +647,13 @@ input[type=submit]:hover {
 	font-weight: bold;
 	text-align: center;
 }
-/* contact me page */
 
+/* contact me page */
 .contact-and-social {
 	display: flex;
 	max-width: 100%; /* Ensure it doesn't overflow */
 	padding: 8%; /* Add padding to prevent content touching edges */
 	box-sizing: border-box; /* Include padding and border in width calculations */
-	margin: 5%
 	justify-content: center;
 }
 .contact-form-container {
@@ -701,8 +665,7 @@ input[type=submit]:hover {
 	justify-content: center;
 }
 .social-buttons {
-	flex: 50%;
-	gap: 5px;
+	flex: 30%;
 	flex-direction: column;
 	justify-content: center;
 }
@@ -747,6 +710,39 @@ input[type=submit]:hover {
 }
 #contact-form .btn-submit:hover {
   background-color: #45a049;
+}
+/* Contact Form: Style inputs with type="text", select elements and text areas */
+input[type=text], select, textarea {
+	font-family: "Nanum Myeongjo", serif;
+	width: 100%; /* Full width */
+	padding: 12px; /* Some padding */ 
+  	border: 1px solid #ccc; /* Gray border */
+  	border-radius: 4px; /* Rounded borders */
+  	box-sizing: border-box; /* Make sure that padding and width stays in place */
+  	margin-top: 6px; /* Add a top margin */
+  	margin-bottom: 16px; /* Bottom margin */
+  	resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+}
+/* Style the submit button with a specific background color etc */
+input[type=submit] {
+	font-family: "Nanum Myeongjo", serif;
+  	background-color: #04AA6D;
+  	color: white;
+  	padding: 12px 20px;
+  	border: none;
+  	border-radius: 4px;
+  	cursor: pointer;
+	font-family: "Nanum Myeongjo", serif;
+}
+/* When moving the mouse over the submit button, add a darker green color */
+input[type=submit]:hover {
+  	background-color: #000000;
+}
+@media (max-width: 480px) {
+  #contact-form-container {
+    max-width: 100%;
+    padding: 0.5rem;
+  }
 }
 /* Styles for responsiveness */
 @media (max-width: 768px) { 
