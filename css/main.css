@@ -663,10 +663,12 @@ body {
   margin: 10%;
   align-items: center; 
   justify-content: center;
+	width: 100%; 
 }
 .social-buttons {
   flex: 35; /* Social buttons take 35% of the space */
-  flex-direction: column;
+  width: 100%;
+	flex-direction: column;
   justify-content: center;
 }
 
