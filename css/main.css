@@ -688,12 +688,12 @@ input[type=submit]:hover {
 }
 .contact-form-container{
 	display: flex;
-	flex: 1;
+	flex: 100%;
 	align-items: center;
 }
 
 .social-buttons{
-	flex: 70%;
+	flex: 1000%;
 	gap: 10px;
 	flex-direction: column;
 }
