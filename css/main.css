@@ -675,34 +675,6 @@ body {
     background-color: #9cc97e;
 }
 
-.social-buttons {
-    display: flex;
-    flex-direction: column; /* Ensure buttons remain stacked */
-    justify-content: space-between; /* Space buttons evenly */
-    align-items: stretch; /* Ensure buttons take full width */
-    gap: 10px; /* Add spacing between buttons */
-}
-
-.social-buttons .button-28 {
-    background-color: white;
-    color: black;
-    border: 2px solid black;
-    padding: 15px;
-    border-radius: 5px;
-    text-align: center;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    width: 100%; /* Full width of the container */
-    box-sizing: border-box; /* Include padding and border in width */
-}
-
-.social-buttons .button-28:hover {
-    background-color: black;
-    color: white;
-    border: 2px solid white;
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
     .contact-and-social {
