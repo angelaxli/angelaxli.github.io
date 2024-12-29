@@ -607,6 +607,9 @@ body {
 	align-items: stretch; /* Ensure items stretch to full width */
 	gap: 20px; /* Add spacing between the contact form and buttons */
 	font-family: "Nanum Myeongjo", serif;
+	padding: 8%; /* Add padding to prevent content touching edges */
+	margin: 5%;
+	box-sizing: border-box; /* Include padding and border in width calculations */
 }
 
 .contact-form-container {
@@ -616,6 +619,47 @@ body {
     border: 1px solid black; /* Thin black border */
     border-radius: 10px; /* Optional: rounded corners */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow */
+}
+
+.contact-form-container .form-group {
+    margin-bottom: 15px;
+}
+.contact-form-container label {
+	display: block;
+	font-size: 150%;
+	margin-bottom: 5px;
+	color: #333;
+	text-align: left; 
+}
+.contact-form-container input {
+    width: 100%;
+    padding: 10px;
+    font-size: 150%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+.contact-form-container textarea {
+    width: 100%; /* Fixed width */
+    padding: 10px;
+    font-size: 150%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    resize: vertical; 
+}
+.contact-form-container button.btn-submit {
+    background-color: #b1dd8c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 150%;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.contact-form-container button.btn-submit:hover {
+    background-color: #9cc97e;
 }
 
 .social-buttons {
