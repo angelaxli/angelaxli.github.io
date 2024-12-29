@@ -681,12 +681,12 @@ body {
     flex-direction: row; /* Align icons horizontally */
     justify-content: space-evenly; /* Even spacing between icons */
     align-items: center; /* Center align the icons */
-    gap: 20px; /* Add spacing between icons (useful for responsiveness) */
-    margin-top: 20px; /* Add spacing above the social icons */
+    gap: 30px; /* Add spacing between icons (useful for responsiveness) */
+    margin-top: 30px; /* Add spacing above the social icons */
 }
 
 .social-buttons a {
-    font-size: 20rem; 
+    font-size: 20%; 
     color: #000000; /* Icon color */
     text-decoration: none; /* Remove underline */
     transition: color 0.3s ease, transform 0.3s ease; /* Smooth hover effect */
