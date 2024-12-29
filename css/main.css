@@ -605,7 +605,9 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin: 20px 0;
+    padding: 8%; /* Add padding to prevent content touching edges */
+	box-sizing: border-box; /* Include padding and border in width calculations */
+	margin: 5%
 	font-family: "Nanum Myeongjo", serif;
 }
 .contact-form-container {
