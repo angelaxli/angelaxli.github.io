@@ -622,7 +622,8 @@ body {
 	gap: 20px; /* Add spacing between the contact form and buttons */
 	font-family: "Nanum Myeongjo", serif;
 	padding: 8%; /* Add padding to prevent content touching edges */
-	margin: 5%;
+	margin-left: 5%;
+	margin-right: 5%;
 	box-sizing: border-box; /* Include padding and border in width calculations */
 }
 
