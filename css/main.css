@@ -685,7 +685,7 @@ body {
 }
 
 .social-buttons a {
-    font-size: 36px; /* Set icon size */
+    font-size: 20rem; 
     color: #000000; /* Icon color */
     text-decoration: none; /* Remove underline */
     transition: color 0.3s ease, transform 0.3s ease; /* Smooth hover effect */
