@@ -675,6 +675,22 @@ body {
     background-color: #9cc97e;
 }
 
+.social-buttons {
+    display: flex;
+    flex-direction: row; /* Align icons horizontally */
+    justify-content: space-evenly; /* Even spacing between icons */
+    align-items: center; /* Center align the icons */
+    gap: 20px; /* Add spacing between icons (useful for responsiveness) */
+    margin-top: 20px; /* Add spacing above the social icons */
+}
+
+.social-buttons a {
+    font-size: 36px; /* Set icon size */
+    color: #000000; /* Icon color */
+    text-decoration: none; /* Remove underline */
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth hover effect */
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .contact-and-social {
