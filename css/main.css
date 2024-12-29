@@ -630,7 +630,7 @@ body {
 }
 
 .contact-form-container {
-    padding: 25px;
+    padding: 35px;
     box-sizing: border-box;
     background-color: white; /* White background */
     border: 1px solid black; /* Thin black border */
@@ -685,7 +685,7 @@ body {
     justify-content: space-evenly; /* Even spacing between icons */
     align-items: center; /* Center align the icons */
     gap: 20px; /* Add spacing between icons (useful for responsiveness) */
-    margin-top: 50px; /* Add spacing above the social icons */
+    margin-top: 80px; /* Add spacing above the social icons */
 }
 
 .social-buttons a {
