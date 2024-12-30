@@ -24,6 +24,7 @@ h3 {
 	font-family: "Nanum Myeongjo", serif;
 	text-align: left;
 	margin-left: 10%
+	margin-bottom: 0%;
 }
 h4 {
 	font-size: 250%;
@@ -624,7 +625,7 @@ body {
 	padding: 8%; /* Add padding to prevent content touching edges */
 	margin-left: 5%;
 	margin-right: 5%;
-	margin-top: 0%;
+	margin-top: 0;
 	margin-bottom: 0%;
 	box-sizing: border-box; /* Include padding and border in width calculations */
 }
