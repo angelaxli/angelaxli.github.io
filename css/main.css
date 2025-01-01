@@ -656,8 +656,10 @@ body {
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
+	font-family: 'Nanum Myeongjo', serif; 
 }
 .contact-form-container textarea {
+	font-family: 'Nanum Myeongjo', serif; 
     width: 100%; /* Fixed width */
     padding: 10px;
     font-size: 150%;
