@@ -642,7 +642,7 @@ body {
 }
 
 .contact-form-container .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 .contact-form-container label {
 	display: block;
@@ -672,7 +672,7 @@ body {
     resize: vertical; 
 }
 .contact-form-container button.btn-submit {
-    background-color: #b1dd8c;
+    background-color: #b1d2ba;
     color: white;
     border: none;
     padding: 10px 20px;
