@@ -680,6 +680,7 @@ body {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+	font-family: 'Nanum Myeongjo', serif; 
 }
 .contact-form-container button.btn-submit:hover {
     background-color: #9cc97e;
