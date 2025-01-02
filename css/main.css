@@ -626,6 +626,7 @@ body {
 	padding: 0%; /* Add padding to prevent content touching edges */
 	margin-left: 8%;
 	margin-right: 8%;
+	margin-bottom: 5%;
 	box-sizing: border-box; /* Include padding and border in width calculations */
 }
 
