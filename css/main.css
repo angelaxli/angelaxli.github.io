@@ -35,7 +35,8 @@ h4 {
 }
 h5 {
   font-family: "Nanum Myeongjo", serif;
-  font-size: 300%;
+	font-size: 50px;
+	word-break: break-all;
 }
 header {
   margin-bottom: 8%;
