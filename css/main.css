@@ -790,13 +790,12 @@ body {
     font-family: 'Nanum Myeongjo', serif;
     margin: 0;
     padding: 0;
-    background-color: #f7f7f7;
 }
 
 .work-container {
     display: flex;
     flex-wrap: wrap; /* Ensures responsiveness */
-    gap: 20px;
+    gap: 50px;
     justify-content: center; /* Center the items horizontally */
     padding: 20px;
     max-width: 1200px;
