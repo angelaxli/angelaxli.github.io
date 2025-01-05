@@ -803,23 +803,24 @@ body {
 }
 
 .work-item {
-    width: calc(50% - 20px); /* Ensures two items per row with spacing */
-    max-width: 400px; /* Limits the size for larger screens */
-    text-align: center;
-    background: #ffffff;
+    width: 300px; /* Fixed width for each work item */
+    height: 400px; /* Fixed height for consistency */
+    background-color: #f9f9f9;
     border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
     overflow: hidden;
-    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 .work-item img {
-    width: 100%; /* Makes the image span the full width of the container */
-    height: 200px; /* Set a fixed height */
-    object-fit: cover; /* Ensures the image scales and crops appropriately to fit */
-    border-radius: 15px 15px 0 0; /* Keeps the rounded corners */
-    display: block; /* Removes any inline spacing */
+    width: 100%; /* Make the image span the entire width */
+    height: 200px; /* Set a uniform height for all images */
+    object-fit: cover; /* Maintain aspect ratio and crop excess */
+    border-radius: 15px 15px 0 0;
 }
 
 .work-item h4 {
