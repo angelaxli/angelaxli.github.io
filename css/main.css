@@ -815,9 +815,11 @@ body {
 }
 
 .work-item img {
-    width: 100%;
-    border-radius: 15px 15px 0 0;
-    display: block;
+    width: 100%; /* Makes the image span the full width of the container */
+    height: 200px; /* Set a fixed height */
+    object-fit: cover; /* Ensures the image scales and crops appropriately to fit */
+    border-radius: 15px 15px 0 0; /* Keeps the rounded corners */
+    display: block; /* Removes any inline spacing */
 }
 
 .work-item h4 {
