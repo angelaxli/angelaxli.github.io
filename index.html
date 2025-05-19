@@ -187,6 +187,16 @@
             filter: drop-shadow(0 0 15px rgba(255, 255, 100, 0.9));
         }
         
+        #light-bulb {
+            position: absolute;
+            top: 20%;
+            right: 20%;
+            opacity: 0;
+            transition: all 0.5s ease;
+            z-index: 4;
+            transform: translateY(55px);
+        }
+        
         body.light-theme #ceiling {
             background-color: #000;
         }
@@ -374,6 +384,9 @@
                 
                 <!-- Light setup at the top of the page -->
                 <div id="light-setup">
+                    <!-- Ceiling element -->
+                    <div id="ceiling"></div>
+                    
                     <!-- Light Fixture -->
                     <svg id="light-fixture" viewBox="0 0 40 40" width="40" height="40" xmlns="http://www.w3.org/2000/svg">
                         <!-- Cord -->
@@ -383,7 +396,7 @@
                         <path d="M12,15 C12,10 28,10 28,15 L28,25 C28,30 12,30 12,25 Z" stroke="white" stroke-width="1.5" fill="none" />
                     </svg>
                     
-                    <!-- Light Bulb -->
+                    <!-- Light Bulb (separate SVG for glow effect) -->
                     <svg id="light-bulb" viewBox="0 0 26 40" width="26" height="40" xmlns="http://www.w3.org/2000/svg">
                         <!-- Base -->
                         <rect x="8" y="30" width="10" height="5" stroke="white" stroke-width="1.5" fill="none" />
@@ -498,16 +511,17 @@
                 el.setAttribute('stroke', 'black');
             });
             
-            document.querySelectorAll('#light-fixture line, #light-fixture path, #light-fixture ellipse').forEach(el => {
+            document.querySelectorAll('#light-fixture line, #light-fixture path, #light-bulb rect, #light-bulb path, #light-bulb ellipse').forEach(el => {
                 el.setAttribute('stroke', 'black');
             });
         }
         
-                    // Stick Figure Animation Sequence
+        // Stick Figure Animation Sequence
         function startAnimation() {
             const stickFigure = document.getElementById('stick-figure');
             const ladder = document.getElementById('ladder');
             const lightFixture = document.getElementById('light-fixture');
+            const lightBulb = document.getElementById('light-bulb');
             const rightArm = document.querySelector('.right-arm');
             const leftArm = document.querySelector('.left-arm');
             
@@ -533,6 +547,7 @@
                 // Then show the light fixture
                 setTimeout(() => {
                     lightFixture.style.opacity = '1';
+                    lightBulb.style.opacity = '1';
                 }, 700);
             }, 3500);  // After the waving is done
             
@@ -628,7 +643,7 @@
                         clearInterval(screwInterval);
                         
                         // Light up the bulb
-                        lightFixture.classList.add('light-glow');
+                        lightBulb.classList.add('light-glow');
                         
                         // Change theme after a short delay
                         setTimeout(() => {
