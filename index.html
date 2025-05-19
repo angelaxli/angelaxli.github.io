@@ -161,37 +161,34 @@
             z-index: 5;
         }
         
-        #light-setup {
+        #ceiling {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 20px;
+            top: 20%;
+            right: 0;
+            width: 0;
+            height: 5px;
+            background-color: #fff;
             z-index: 3;
+            transition: width 1.5s ease, background-color 1.5s ease;
+            transform: translateY(50px);
         }
         
         #light-fixture {
             position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
+            top: 20%;
+            right: 20%;
             opacity: 0;
-            transition: opacity 0.5s ease;
+            transition: all 0.5s ease;
             z-index: 3;
-        }
-        
-        #light-bulb {
-            position: absolute;
-            top: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            opacity: 0;
-            transition: opacity 0.5s ease, filter 1s ease;
-            z-index: 4;
+            transform: translateY(55px);
         }
         
         .light-glow {
-            filter: drop-shadow(0 0 15px rgba(255, 255, 200, 0.8));
+            filter: drop-shadow(0 0 15px rgba(255, 255, 100, 0.9));
+        }
+        
+        body.light-theme #ceiling {
+            background-color: #000;
         }
         
         footer {
@@ -359,19 +356,19 @@
                 <div class="categories hidden">
                     <div class="category-item">
                         <div class="category-number">01.</div>
-                        <div class="category-name">About</div>
+                        <div class="category-name">CS Projects</div>
                     </div>
                     <div class="category-item">
                         <div class="category-number">02.</div>
-                        <div class="category-name">Projects</div>
-                    </div>
-                    <div class="category-item">
-                        <div class="category-number">03.</div>
                         <div class="category-name">Research</div>
                     </div>
                     <div class="category-item">
+                        <div class="category-number">03.</div>
+                        <div class="category-name">Poetry</div>
+                    </div>
+                    <div class="category-item">
                         <div class="category-number">04.</div>
-                        <div class="category-name">Writing</div>
+                        <div class="category-name">About</div>
                     </div>
                 </div>
                 
@@ -444,8 +441,8 @@
 
         <footer>
             <div class="footer-name">Angela Li</div>
-            <div class="footer-website">github.com/angelaxli</div>
-            <div class="footer-email">226angelli@gmail.com</div>
+            <div class="footer-website">github.com/angelali</div>
+            <div class="footer-email">angela.li@email.com</div>
         </footer>
     </div>
 
@@ -501,21 +498,16 @@
                 el.setAttribute('stroke', 'black');
             });
             
-            document.querySelectorAll('#light-fixture line, #light-fixture path').forEach(el => {
-                el.setAttribute('stroke', 'black');
-            });
-            
-            document.querySelectorAll('#light-bulb rect, #light-bulb path, #light-bulb ellipse').forEach(el => {
+            document.querySelectorAll('#light-fixture line, #light-fixture path, #light-fixture ellipse').forEach(el => {
                 el.setAttribute('stroke', 'black');
             });
         }
         
-        // Stick Figure Animation Sequence
+                    // Stick Figure Animation Sequence
         function startAnimation() {
             const stickFigure = document.getElementById('stick-figure');
             const ladder = document.getElementById('ladder');
             const lightFixture = document.getElementById('light-fixture');
-            const lightBulb = document.getElementById('light-bulb');
             const rightArm = document.querySelector('.right-arm');
             const leftArm = document.querySelector('.left-arm');
             
@@ -533,8 +525,15 @@
             // Make ladder and light fixtures visible after initial wave
             setTimeout(() => {
                 ladder.style.opacity = '1';
-                lightFixture.style.opacity = '1';
-                lightBulb.style.opacity = '1';
+                
+                // Show the ceiling first
+                const ceiling = document.getElementById('ceiling');
+                ceiling.style.width = '40%';
+                
+                // Then show the light fixture
+                setTimeout(() => {
+                    lightFixture.style.opacity = '1';
+                }, 700);
             }, 3500);  // After the waving is done
             
             // Wave animation
@@ -603,6 +602,9 @@
             
             // Function to screw in the light bulb
             function screwInLightBulb() {
+                // Position stick figure close to the light
+                stickFigure.style.transform = `translateY(-230px) translateX(100px)`;
+                
                 // Move arms to reaching up position
                 leftArm.setAttribute('x2', '40');
                 leftArm.setAttribute('y2', '20');
@@ -618,7 +620,7 @@
                     screwAngle = (screwAngle + 15) % 30;
                     const wiggle = screwAngle - 15;
                     
-                    stickFigure.style.transform = `translateY(-230px) rotate(${wiggle}deg)`;
+                    stickFigure.style.transform = `translateY(-230px) translateX(100px) rotate(${wiggle}deg)`;
                     
                     rotations++;
                     
@@ -626,7 +628,7 @@
                         clearInterval(screwInterval);
                         
                         // Light up the bulb
-                        lightBulb.classList.add('light-glow');
+                        lightFixture.classList.add('light-glow');
                         
                         // Change theme after a short delay
                         setTimeout(() => {
@@ -653,6 +655,9 @@
                 
                 // Starting from the top position
                 let climbStep = 0;
+                
+                // Move figure back to ladder position
+                stickFigure.style.transform = `translateY(-230px)`;
                 
                 // Climb down animation
                 function descendStep() {
@@ -687,7 +692,7 @@
             
             // Reset to normal standing pose
             function resetToNormalPose() {
-                // Hide ladder after a short delay
+                // Hide ladder after a short delay but keep the ceiling and light
                 setTimeout(() => {
                     ladder.style.opacity = '0';
                 }, 1000);
@@ -696,7 +701,8 @@
                 document.querySelector('.left-leg').setAttribute('x2', '35');
                 document.querySelector('.right-leg').setAttribute('x2', '65');
                 document.querySelector('.left-arm').setAttribute('x2', '30');
-                document.querySelector('.right-arm').setAttribute('y2', '70');
+                document.querySelector('.right-arm').setAttribute('x2', '70');
+                document.querySelector('.right-arm').setAttribute('y2', '50');
                 
                 // Reset transform
                 stickFigure.style.transform = 'translateY(0)';
