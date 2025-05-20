@@ -19,16 +19,19 @@
             color: #fff;
             background-color: #000;
             cursor: default;
-            height: 100vh;
+            min-height: 100vh; 
             overflow-x: hidden;
             transition: background-color 1.5s ease, color 1.5s ease;
+            display: flex; 
+            flex-direction: column; 
         }
         
         .container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 2rem;
-            height: 100%;
+            width: 100%; 
+            flex-grow: 1; 
             display: flex;
             flex-direction: column;
         }
@@ -77,11 +80,11 @@
         }
         
         main {
-            flex: 1;
+            flex: 1; 
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
+            position: relative; 
         }
         
         .main-content {
@@ -100,7 +103,7 @@
             letter-spacing: -0.02em;
         }
         
-        .year {
+        .year { /* This element's position will influence the animation */
             position: absolute;
             top: 20%;
             right: 10%;
@@ -109,6 +112,7 @@
             letter-spacing: 0.05em;
             transform: rotate(10deg);
             opacity: 0.8;
+            /* background-color: rgba(255,0,0,0.2); */ /* For visual debugging */
         }
         
         .categories {
@@ -130,64 +134,95 @@
             width: 40px;
             opacity: 0.5;
         }
+
+        #light-setup { 
+            position: absolute; 
+            bottom: 0; 
+            right: 10%; 
+            width: 200px; 
+            height: 400px; 
+            pointer-events: none; 
+            z-index: 2; 
+            /* border: 1px solid yellow; */
+        }
+
+        #ceiling {
+            position: absolute; 
+            top: 50px; 
+            left: 50%; 
+            transform: translateX(-50%);
+            width: 0; 
+            height: 5px;
+            background-color: #fff;
+            z-index: 3;
+            transition: width 1.5s ease, background-color 1.5s ease, top 0.3s ease;
+        }
         
-        #animation-container {
+        #light-fixture { 
+            position: absolute;
+            top: 55px; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            opacity: 0;
+            transition: all 0.5s ease; 
+            z-index: 4; 
+            width: 40px; 
+            height: 40px; 
+            /* border: 1px solid cyan; */
+        }
+        
+        .light-glow {
+            filter: drop-shadow(0 0 20px rgba(255, 255, 100, 0.9));
+        }
+        .light-glow .bulb-shape { 
+            fill: rgba(255, 255, 100, 0.7);
+            stroke: #FFFF64; 
+        }
+        
+        body.light-theme #ceiling {
+            background-color: #000;
+        }
+        body.light-theme #light-fixture line,
+        body.light-theme #light-fixture path,
+        body.light-theme #light-fixture ellipse {
+            stroke: #000;
+        }
+        body.light-theme .light-glow .bulb-shape {
+             fill: rgba(50, 50, 0, 0.7); 
+             stroke: #323200;
+        }
+        
+        #animation-container { 
             position: absolute;
             bottom: 0;
             right: 10%;
             width: 200px;
             height: 400px;
-            z-index: 10;
+            z-index: 10; 
+            /* border: 1px dotted blue; */
         }
         
         #stick-figure {
             position: absolute;
-            bottom: 50px;
-            left: 60px;
-            width: 80px;
-            height: 120px;
-            z-index: 15;
-            transition: transform 0.3s ease;
+            bottom: 50px; 
+            left: 60px;   
+            width: 80px; 
+            height: 120px; 
+            z-index: 15; 
+            transition: transform 0.5s ease-out; 
+            /* border: 1px dotted green; */
         }
         
         #ladder {
             position: absolute;
-            bottom: 50px;
-            left: 100px;
-            width: 60px;
-            height: 300px;
+            bottom: 50px; 
+            left: 100px;  
+            width: 60px; 
+            height: 300px; 
             opacity: 0;
-            transition: opacity 0.5s ease;
-            z-index: 5;
-        }
-        
-        #ceiling {
-            position: absolute;
-            top: 50%;
-            right: 0;
-            width: 0;
-            height: 5px;
-            background-color: #fff;
-            z-index: 3;
-            transition: width 1.5s ease, background-color 1.5s ease;
-        }
-        
-        #light-fixture {
-            position: absolute;
-            top: 50%;
-            right: 20%;
-            opacity: 0;
-            transition: all 0.5s ease;
-            z-index: 3;
-        }
-        
-        .light-glow {
-            filter: drop-shadow(0 0 20px rgba(255, 255, 100, 0.9));
-            box-shadow: 0 0 30px 10px rgba(255, 255, 100, 0.7);
-        }
-        
-        body.light-theme #ceiling {
-            background-color: #000;
+            transition: opacity 0.5s ease, height 0.3s ease;
+            z-index: 5; 
+            /* border: 1px dotted orange; */
         }
         
         footer {
@@ -197,6 +232,11 @@
             display: flex;
             justify-content: space-between;
             transition: border-color 1.5s ease;
+            width: 100%; 
+            max-width: 1400px; 
+            margin: 0 auto; 
+            padding-left: 2rem; 
+            padding-right: 2rem; 
         }
         
         .footer-name {
@@ -230,7 +270,7 @@
             pointer-events: none;
             border-radius: 50%;
             z-index: 999;
-            transition: transform 0.15s ease-out, border-color 1.5s ease;
+            transition: transform 0.15s ease-out, border-color 1.5s ease, background-color 0.2s ease;
         }
         
         @media (min-width: 1024px) {
@@ -259,7 +299,6 @@
             animation: fadeInUp 0.8s ease forwards;
         }
         
-        /* Light theme styles (applied after animation) */
         body.light-theme {
             background-color: #fff;
             color: #000;
@@ -305,26 +344,32 @@
             .header-center {
                 display: none;
             }
-            
             .categories {
                 margin-top: 3vh;
             }
-            
-            #animation-container {
+            #animation-container, #light-setup { 
                 width: 150px;
+                height: 300px; 
                 right: 5%;
             }
-            
             #stick-figure {
                 width: 60px;
                 height: 90px;
-                left: 45px;
+                left: 45px; 
+                bottom: 30px;
             }
-            
             #ladder {
                 width: 40px;
-                left: 75px;
-                height: 220px;
+                left: 75px; 
+                height: 220px; 
+                bottom: 30px;
+            }
+            .name-display {
+                font-size: 15vw;
+            }
+            .year {
+                font-size: 5vw;
+                top: 15%; /* Adjust for smaller screens if needed */
             }
         }
     </style>
@@ -371,34 +416,19 @@
                     </div>
                 </div>
                 
-                <!-- Light setup at the top of the page -->
                 <div id="light-setup">
-                    <!-- Ceiling element -->
                     <div id="ceiling"></div>
-                    
-                    <!-- Light Fixture -->
                     <svg id="light-fixture" viewBox="0 0 40 40" width="40" height="40" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Cord -->
                         <line x1="20" y1="0" x2="20" y2="15" stroke="white" stroke-width="1.5" />
-                        
-                        <!-- Light holder and bulb combined -->
                         <path d="M12,15 C12,10 28,10 28,15 L28,25 C28,30 12,30 12,25 Z" stroke="white" stroke-width="1.5" fill="none" />
-                        
-                        <!-- Light Bulb shape integrated into fixture -->
                         <ellipse cx="20" cy="20" rx="7" ry="10" stroke="white" stroke-width="1.5" fill="none" class="bulb-shape" />
                     </svg>
                 </div>
                 
                 <div id="animation-container">
-                    <!-- Ladder SVG -->
-                    <svg id="ladder" viewBox="0 0 60 300" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Left rail -->
+                    <svg id="ladder" viewBox="0 0 60 300" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax meet">
                         <line x1="10" y1="10" x2="10" y2="290" stroke="white" stroke-width="2" />
-                        
-                        <!-- Right rail -->
                         <line x1="50" y1="10" x2="50" y2="290" stroke="white" stroke-width="2" />
-                        
-                        <!-- Rungs (steps) -->
                         <line x1="10" y1="40" x2="50" y2="40" stroke="white" stroke-width="2" />
                         <line x1="10" y1="70" x2="50" y2="70" stroke="white" stroke-width="2" />
                         <line x1="10" y1="100" x2="50" y2="100" stroke="white" stroke-width="2" />
@@ -409,19 +439,11 @@
                         <line x1="10" y1="250" x2="50" y2="250" stroke="white" stroke-width="2" />
                     </svg>
                     
-                    <!-- Stick Figure -->
                     <svg id="stick-figure" viewBox="0 0 100 150" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Head -->
                         <circle cx="50" cy="30" r="15" stroke="white" stroke-width="2" fill="none" class="head" />
-                        
-                        <!-- Body -->
                         <line x1="50" y1="45" x2="50" y2="90" stroke="white" stroke-width="2" class="body-line" />
-                        
-                        <!-- Arms -->
                         <line x1="50" y1="60" x2="30" y2="70" stroke="white" stroke-width="2" class="left-arm" />
                         <line x1="50" y1="60" x2="70" y2="50" stroke="white" stroke-width="2" class="right-arm" />
-                        
-                        <!-- Legs -->
                         <line x1="50" y1="90" x2="35" y2="130" stroke="white" stroke-width="2" class="left-leg" />
                         <line x1="50" y1="90" x2="65" y2="130" stroke="white" stroke-width="2" class="right-leg" />
                     </svg>
@@ -437,273 +459,397 @@
     </div>
 
     <script>
-        // Animation on load
-        document.addEventListener('DOMContentLoaded', () => {
-            const elements = document.querySelectorAll('.hidden');
+        // Global parameters for animation, updated on resize
+        let climbTopY_global = 0; 
+        let stickFigureTranslateXOnLadder_global = 0; 
+        let dynamicClimbingSteps = [];
+
+        // DOM Elements
+        let stickFigure, ladder, lightFixture, ceiling, rightArm, leftArm, leftLeg, rightLeg, animationContainer, lightSetup, yearElement;
+
+        function cacheElements() {
+            stickFigure = document.getElementById('stick-figure');
+            ladder = document.getElementById('ladder');
+            lightFixture = document.getElementById('light-fixture');
+            ceiling = document.getElementById('ceiling');
+            animationContainer = document.getElementById('animation-container');
+            lightSetup = document.getElementById('light-setup'); 
+            yearElement = document.querySelector('.year'); // Cache the year element
+            if (stickFigure) {
+                rightArm = stickFigure.querySelector('.right-arm');
+                leftArm = stickFigure.querySelector('.left-arm');
+                leftLeg = stickFigure.querySelector('.left-leg');
+                rightLeg = stickFigure.querySelector('.right-leg');
+            }
+        }
+
+        function getElementHeight(element, cssHeightFallbackStr) {
+            if (!element) return parseFloat(cssHeightFallbackStr) || 0;
+            let height = element.getBoundingClientRect().height;
+            if (height === 0 || isNaN(height)) {
+                console.warn(`[AnimationDebug] getBoundingClientRect().height for ${element.id || element.className} is ${height}. Falling back to CSS height.`);
+                height = parseFloat(getComputedStyle(element).height);
+                 if (height === 0 || isNaN(height)) {
+                    console.warn(`[AnimationDebug] CSS height for ${element.id || element.className} is also ${height}. Falling back to provided fallback: ${cssHeightFallbackStr}`);
+                    height = parseFloat(cssHeightFallbackStr) || 0;
+                 }
+            }
+            return height;
+        }
+
+
+        function updateAnimationParameters() {
+            console.log("[AnimationDebug] --- Updating animation parameters START ---");
+            if (!animationContainer || !stickFigure || !ladder || !lightFixture || !ceiling || !lightSetup || !yearElement) {
+                console.warn("[AnimationDebug] updateAnimationParameters: Critical elements null, attempting to re-cache.");
+                cacheElements();
+                 if (!animationContainer || !stickFigure || !ladder || !lightFixture || !ceiling || !lightSetup || !yearElement) {
+                    console.error("[AnimationDebug] updateAnimationParameters: Critical elements STILL null after re-cache. Aborting update.");
+                    return; 
+                 }
+            }
+
+            const animContainerHeight = getElementHeight(animationContainer, "400px");
+            const animContainerRect = animationContainer.getBoundingClientRect(); // Get anim container's position relative to viewport
+            console.log(`[AnimationDebug] animContainerHeight: ${animContainerHeight}px, animContainerViewportTop: ${animContainerRect.top}px`);
+            if (animContainerHeight === 0) {
+                console.warn("[AnimationDebug] animContainerHeight is 0.");
+            }
+
+            // --- Positioning based on ".year" element ---
+            const yearRect = yearElement.getBoundingClientRect();
+            const yearHeight = yearRect.height; // Use BoundingClientRect height
+            const yearBottom_viewport = yearRect.bottom; // Bottom of year element relative to viewport
+            console.log(`[AnimationDebug] Year Element: viewportTop=${yearRect.top}px, height=${yearHeight}px, viewportBottom=${yearBottom_viewport}px`);
+
+            // Target: Ceiling top is 8% of yearHeight BELOW yearBottom_viewport
+            const targetCeilingTop_viewport = yearBottom_viewport + (yearHeight * 0.08);
+            console.log(`[AnimationDebug] Target Ceiling Top (Viewport): ${targetCeilingTop_viewport}px`);
+
+            // Convert targetCeilingTop_viewport to be relative to lightSetup's top
+            // lightSetup's top in viewport is the same as animationContainer's top in viewport
+            const lightSetupViewportTop = animContainerRect.top; // Since light-setup is aligned with animation-container
+            let finalCeilingTop_relativeToLightSetup = targetCeilingTop_viewport - lightSetupViewportTop;
+            console.log(`[AnimationDebug] Light Setup Viewport Top: ${lightSetupViewportTop}px`);
             
-            setTimeout(() => {
-                elements.forEach((el, index) => {
+            // Safeguard: Ensure ceiling is within reasonable bounds of light-setup/animation-container
+            const minCeilingTopRel = animContainerHeight * 0.05; // Not too high
+            const maxCeilingTopRel = animContainerHeight * 0.50; // Not too low (leaving space for ladder)
+            if (finalCeilingTop_relativeToLightSetup < minCeilingTopRel || isNaN(finalCeilingTop_relativeToLightSetup)) {
+                console.warn(`[AnimationDebug] Calculated ceiling top (${finalCeilingTop_relativeToLightSetup}px) too high or NaN. Clamping to ${minCeilingTopRel}px.`);
+                finalCeilingTop_relativeToLightSetup = minCeilingTopRel;
+            } else if (finalCeilingTop_relativeToLightSetup > maxCeilingTopRel) {
+                console.warn(`[AnimationDebug] Calculated ceiling top (${finalCeilingTop_relativeToLightSetup}px) too low. Clamping to ${maxCeilingTopRel}px.`);
+                finalCeilingTop_relativeToLightSetup = maxCeilingTopRel;
+            }
+            ceiling.style.top = finalCeilingTop_relativeToLightSetup + 'px';
+            console.log(`[AnimationDebug] Ceiling: finalTop_relativeToLightSetup=${finalCeilingTop_relativeToLightSetup}px`);
+
+            // --- Light Fixture Positioning ---
+            const lightFixtureElementHeight = getElementHeight(lightFixture, "40px");
+            let finalLightFixtureTopCssValue = finalCeilingTop_relativeToLightSetup + 5; // 5px below ceiling
+            lightFixture.style.top = finalLightFixtureTopCssValue + 'px';
+            console.log(`[AnimationDebug] Light Fixture: elementHeight=${lightFixtureElementHeight}px, finalTopCssValue=${finalLightFixtureTopCssValue}px`);
+            
+            // --- Ladder Height & Positioning ---
+            const ladderCssBottom = parseFloat(getComputedStyle(ladder).bottom); 
+            const lightFixtureBottom_relativeToLightSetup = finalLightFixtureTopCssValue + lightFixtureElementHeight;
+            const gapBelowLightFixture = animContainerHeight * 0.05; // e.g., 5% of container height gap
+            
+            // Ladder's top should be below the light fixture to allow stick figure to reach
+            let ladderTopTarget_relativeToLightSetup = lightFixtureBottom_relativeToLightSetup + gapBelowLightFixture;
+            
+            // Calculate ladder height based on its fixed bottom and this target top
+            // Y coordinates are from the top of lightSetup/animContainer
+            let newLadderHeight = (animContainerHeight - ladderCssBottom) - ladderTopTarget_relativeToLightSetup;
+            newLadderHeight = Math.max(animContainerHeight * 0.2, newLadderHeight); // Min ladder height 20% of container
+            ladder.style.height = newLadderHeight + 'px';
+            const ladderElementHeight = getElementHeight(ladder, newLadderHeight + "px"); // Verify actual height
+            console.log(`[AnimationDebug] Ladder: cssBottom=${ladderCssBottom}px, newCalculatedHeight=${newLadderHeight}px, actualElementHeight=${ladderElementHeight}px`);
+
+            // --- Ceiling Width Extension (no change here) ---
+            const lightSetupRect = lightSetup.getBoundingClientRect(); 
+            const ceilingStartGlobalX = lightSetupRect.left + (lightSetup.offsetWidth / 2); 
+            const viewportWidth = document.documentElement.clientWidth;
+            ceiling.dataset.targetWidth = Math.max(0, viewportWidth - ceilingStartGlobalX) + 'px';
+
+            // --- Stick Figure X Translation to Ladder (no change here) ---
+            if (ladder.offsetLeft !== undefined && stickFigure.offsetLeft !== undefined && ladder.offsetWidth !== undefined && stickFigure.offsetWidth !== undefined) {
+                 stickFigureTranslateXOnLadder_global = (ladder.offsetLeft + ladder.offsetWidth / 2) - (stickFigure.offsetLeft + stickFigure.offsetWidth / 2);
+            } else {
+                const defaultLadderLeft = parseFloat(getComputedStyle(ladder).left) || 100;
+                const defaultLadderWidth = parseFloat(getComputedStyle(ladder).width) || 60;
+                const defaultStickFigureLeft = parseFloat(getComputedStyle(stickFigure).left) || 60;
+                const defaultStickFigureWidth = parseFloat(getComputedStyle(stickFigure).width) || 80;
+                stickFigureTranslateXOnLadder_global = (defaultLadderLeft + defaultLadderWidth / 2) - (defaultStickFigureLeft + defaultStickFigureWidth / 2);
+            }
+            
+            // --- 6. Recalculate climbTopY_global for stick figure's HANDS to reach BOTTOM of light fixture ---
+            const sfCssBottom = parseFloat(getComputedStyle(stickFigure).bottom); 
+            const sfHeight = getElementHeight(stickFigure, "120px"); 
+            console.log(`[AnimationDebug] Stick Figure: cssBottom=${sfCssBottom}px, sfHeight=${sfHeight}px`);
+            
+            if (sfHeight === 0 || isNaN(sfHeight) || lightFixtureElementHeight === 0 || isNaN(lightFixtureElementHeight)) {
+                console.error("[AnimationDebug] Stick figure or Light fixture height is 0 or NaN. Setting climbTopY to 0.");
+                climbTopY_global = 0; 
+            } else {
+                const sfHandsOffsetYFactor = 60 / 150; 
+                const sfHandsOffsetFromSFTop_px = sfHeight * sfHandsOffsetYFactor;
+
+                // sfInitialTopEdge_from_AC_Top is SF's top relative to animContainer's top when SF is at rest
+                const sfInitialTopEdge_from_AC_Top = animContainerHeight - sfCssBottom - sfHeight;
+                // sfInitialHands_from_AC_Top is SF's hands relative to animContainer's top when SF is at rest
+                const sfInitialHands_from_AC_Top = sfInitialTopEdge_from_AC_Top + sfHandsOffsetFromSFTop_px;
+                console.log(`[AnimationDebug] Stick Figure Initial Y: topEdgeFromACTop=${sfInitialTopEdge_from_AC_Top}px, handsFromACTop=${sfInitialHands_from_AC_Top}px`);
+                
+                // lfTargetBottom_from_AC_Top is Light Fixture's bottom relative to animContainer's top
+                // finalLightFixtureTopCssValue is already relative to animContainer/lightSetup top
+                const lfTargetBottom_from_AC_Top = finalLightFixtureTopCssValue + lightFixtureElementHeight;
+                console.log(`[AnimationDebug] Light Fixture Target Y (Bottom): bottomFromACTop=${lfTargetBottom_from_AC_Top}px`);
+
+                climbTopY_global = sfInitialHands_from_AC_Top - lfTargetBottom_from_AC_Top;
+                climbTopY_global = Math.max(0, climbTopY_global); 
+            }
+            console.log(`[AnimationDebug] FINAL climbTopY_global: ${climbTopY_global}px`);
+
+            // --- 7. Update dynamicClimbingSteps y-values based on climbTopY_global ---
+            const baseStepYPercentages = [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1]; 
+            dynamicClimbingSteps = baseStepYPercentages.map((p, index) => ({
+                y: climbTopY_global * p, 
+                lL: (index % 2 !== 0 && climbTopY_global > 10) ? -5 : 0, 
+                rL: (index % 2 !== 0 && climbTopY_global > 10) ? 5 : 0,
+                lA: (index % 2 !== 0 && climbTopY_global > 10) ? -2 : 0,
+                rA: (index % 2 !== 0 && climbTopY_global > 10) ? 2 : 0
+            }));
+
+            if (dynamicClimbingSteps.length > 0) {
+                dynamicClimbingSteps[0] = { y: 0, lL: 0, rL: 0, lA: 0, rA: 0 }; 
+            } else { 
+                dynamicClimbingSteps.push({ y: 0, lL: 0, rL: 0, lA: 0, rA: 0 });
+            }
+            
+            if (climbTopY_global < 5 || isNaN(climbTopY_global)) { 
+                dynamicClimbingSteps = [{ y: 0, lL: 0, rL: 0, lA: 0, rA: 0 }];
+                console.log("[AnimationDebug] Climb distance very small or NaN, setting to no climb steps.");
+            }
+            console.log("[AnimationDebug] --- Parameter update finished ---");
+        }
+
+        window.onload = () => {
+            console.log("[AnimationDebug] window.onload fired.");
+            cacheElements(); 
+
+            const elementsToFadeIn = document.querySelectorAll('.hidden');
+            setTimeout(() => { 
+                elementsToFadeIn.forEach((el, index) => {
                     setTimeout(() => {
                         el.classList.add('fade-in');
                     }, index * 200);
                 });
-            }, 300);
+            }, 300); 
             
-            // Start stick figure animation sequence after page loads
-            setTimeout(() => {
-                startAnimation();
-            }, 1500);
-        });
+            requestAnimationFrame(() => { 
+                updateAnimationParameters(); 
+                window.addEventListener('resize', () => {
+                    requestAnimationFrame(updateAnimationParameters); 
+                });
+
+                setTimeout(() => { 
+                    if (stickFigure && ladder && lightFixture && ceiling) { 
+                        startAnimation();
+                    } else {
+                        console.error("[AnimationDebug] Crucial elements missing before starting animation.");
+                    }
+                }, 1200); 
+            });
+        };
         
-        // Custom cursor
         const cursorDot = document.getElementById('cursor-dot');
         const cursorCircle = document.getElementById('cursor-circle');
-        
-        window.addEventListener('mousemove', e => {
-            cursorDot.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-            cursorCircle.style.transform = `translate(${e.clientX - 12}px, ${e.clientY - 12}px)`;
-        });
-        
-        // Interactive elements cursor effect
-        document.querySelectorAll('a, .arrow-icon').forEach(el => {
-            el.addEventListener('mouseenter', (event) => {
-                cursorCircle.style.transform = `translate(${event.clientX - 12}px, ${event.clientY - 12}px) scale(1.5)`;
+        if (window.matchMedia("(min-width: 1024px)").matches) {
+            window.addEventListener('mousemove', e => {
+                cursorDot.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+                cursorCircle.style.transform = `translate(${e.clientX - 12}px, ${e.clientY - 12}px)`;
             });
-            
-            el.addEventListener('mouseleave', (event) => {
-                cursorCircle.style.transform = `translate(${event.clientX - 12}px, ${event.clientY - 12}px) scale(1)`;
+            document.querySelectorAll('a, .arrow-icon').forEach(el => {
+                el.addEventListener('mouseenter', (event) => {
+                    cursorCircle.style.transform = `translate(${event.clientX - 12}px, ${event.clientY - 12}px) scale(1.5)`;
+                    cursorCircle.style.backgroundColor = 'rgba(255,255,255,0.2)';
+                });
+                el.addEventListener('mouseleave', (event) => {
+                    cursorCircle.style.transform = `translate(${event.clientX - 12}px, ${event.clientY - 12}px) scale(1)`;
+                    cursorCircle.style.backgroundColor = 'transparent';
+                });
             });
-        });
+        } else {
+            if(cursorDot) cursorDot.style.display = 'none';
+            if(cursorCircle) cursorCircle.style.display = 'none';
+        }
         
-                    // Theme changing function
         function changeToLightTheme() {
             document.body.classList.add('light-theme');
-            
-            // Update SVG elements' stroke color
-            document.querySelectorAll('#stick-figure line, #stick-figure circle').forEach(el => {
-                el.setAttribute('stroke', 'black');
-            });
-            
-            document.querySelectorAll('#ladder line').forEach(el => {
-                el.setAttribute('stroke', 'black');
-            });
-            
-            document.querySelectorAll('#light-fixture line, #light-fixture path, #light-fixture ellipse').forEach(el => {
-                el.setAttribute('stroke', 'black');
+            document.querySelectorAll('#stick-figure line, #stick-figure circle, #ladder line, #light-fixture line, #light-fixture path, #light-fixture ellipse').forEach(el => {
+                if (!el.classList.contains('bulb-shape')) {
+                    el.setAttribute('stroke', 'black');
+                }
             });
         }
         
-        // Stick Figure Animation Sequence
         function startAnimation() {
-            const stickFigure = document.getElementById('stick-figure');
-            const ladder = document.getElementById('ladder');
-            const lightFixture = document.getElementById('light-fixture');
-            const rightArm = document.querySelector('.right-arm');
-            const leftArm = document.querySelector('.left-arm');
+            if (!stickFigure || !ladder || !lightFixture || !ceiling || !rightArm || !leftArm || !leftLeg || !rightLeg) {
+                console.error("[AnimationDebug] startAnimation: Cannot start, critical elements are null.");
+                return;
+            }
+            let currentClimbStep = 0;
+            console.log("[AnimationDebug] Starting animation sequence. climbTopY_global:", climbTopY_global, "Num steps:", dynamicClimbingSteps.length);
+
+            function animateLimbs(step) {
+                if (!step) { console.warn("[AnimationDebug] animateLimbs: step is undefined."); return; }
+                leftLeg.setAttribute('x2', 35 + step.lL);
+                rightLeg.setAttribute('x2', 65 + step.rL);
+                leftArm.setAttribute('x2', 30 + step.lA);
+                rightArm.setAttribute('y2', 50); 
+                rightArm.setAttribute('x2', 70 + step.rA);
+            }
             
-            // Define climbing steps globally
-            const climbingSteps = [
-                { y: 50, leftLeg: -10, rightLeg: 10, leftArm: -5, rightArm: 10 },   // Starting position
-                { y: 80, leftLeg: 0, rightLeg: 0, leftArm: -15, rightArm: 15 },     // First step up
-                { y: 110, leftLeg: -10, rightLeg: 10, leftArm: -5, rightArm: 10 },  // Second step
-                { y: 140, leftLeg: 0, rightLeg: 0, leftArm: -15, rightArm: 15 },    // Third step
-                { y: 170, leftLeg: -10, rightLeg: 10, leftArm: -5, rightArm: 10 },  // Fourth step
-                { y: 200, leftLeg: 0, rightLeg: 0, leftArm: -15, rightArm: 15 },    // Fifth step
-                { y: 230, leftLeg: -10, rightLeg: 10, leftArm: -15, rightArm: 15 }  // Top position
-            ];
-            
-            // Make ladder and light fixtures visible after initial wave
-            setTimeout(() => {
-                ladder.style.opacity = '1';
-                
-                // Show the ceiling first
-                const ceiling = document.getElementById('ceiling');
-                ceiling.style.width = '40%';
-                
-                // Then show the light fixture
-                setTimeout(() => {
-                    lightFixture.style.opacity = '1';
-                }, 700);
-            }, 3500);  // After the waving is done
-            
-            // Wave animation
             function wave() {
-                // Store original values
-                const originalX2 = 70;
-                const originalY2 = 50;
-                
-                // Wave animation using keyframes
+                const originalX2 = 70; 
+                const originalY2 = 50; 
                 let waveTime = 0;
+                const waveDuration = 2000; 
+                const intervalTime = 50;  
+                
                 const waveInterval = setInterval(() => {
-                    waveTime += 0.1;
-                    
-                    // Wave motion
-                    const waveY = originalY2 - 15 * Math.sin(waveTime * 5);
+                    waveTime += intervalTime;
+                    const waveY = originalY2 - 15 * Math.sin((waveTime / waveDuration) * Math.PI * 4); 
                     rightArm.setAttribute('x2', originalX2);
                     rightArm.setAttribute('y2', waveY);
                     
-                    if (waveTime >= 3) {  // Wave for 3 seconds
+                    if (waveTime >= waveDuration) {
                         clearInterval(waveInterval);
-                        // Reset arm position
-                        rightArm.setAttribute('x2', originalX2);
+                        rightArm.setAttribute('x2', originalX2); 
                         rightArm.setAttribute('y2', originalY2);
-                        
-                        // Start climbing animation after waving
-                        climbLadder();
+                        moveToLadderAndPrepareClimb(); 
                     }
-                }, 100);
+                }, intervalTime);
+            }
+
+            function moveToLadderAndPrepareClimb() {
+                stickFigure.style.transform = `translateX(${stickFigureTranslateXOnLadder_global || 0}px)`;
+                setTimeout(() => { 
+                    ladder.style.opacity = '1';
+                    ceiling.style.width = ceiling.dataset.targetWidth || '80px'; 
+                    setTimeout(() => { 
+                        lightFixture.style.opacity = '1';
+                        setTimeout(climbLadder, 500); 
+                    }, 700); 
+                }, 500); 
             }
             
-            // Function to climb the ladder
             function climbLadder() {
-                // Starting positions
-                let climbStep = 0;  // Step counter
-                
-                // Climb animation
-                function climb() {
-                    if (climbStep >= climbingSteps.length) {
-                        // Reached the top, time to screw in the light bulb
-                        screwInLightBulb();
-                        return;
-                    }
-                    
-                    // Get current step
-                    const step = climbingSteps[climbStep];
-                    
-                    // Move the entire figure up
-                    stickFigure.style.transform = `translateY(-${step.y}px)`;
-                    
-                    // Adjust limbs for climbing pose
-                    document.querySelector('.left-leg').setAttribute('x2', 35 + step.leftLeg);
-                    document.querySelector('.right-leg').setAttribute('x2', 65 + step.rightLeg);
-                    document.querySelector('.left-arm').setAttribute('x2', 30 + step.leftArm);
-                    document.querySelector('.right-arm').setAttribute('x2', 70 + step.rightArm);
-                    
-                    // Next step
-                    climbStep++;
-                    
-                    // Continue climbing after delay
-                    setTimeout(climb, 600);
+                if (!dynamicClimbingSteps || dynamicClimbingSteps.length === 0) {
+                    console.warn("[AnimationDebug] No climbing steps. Proceeding to screwInLightBulb().");
+                    screwInLightBulb(); 
+                    return;
+                }
+                if (dynamicClimbingSteps.length === 1 && dynamicClimbingSteps[0].y === 0 && currentClimbStep === 0) {
+                     console.log("[AnimationDebug] No climb needed. Proceeding to screwInLightBulb().");
+                     screwInLightBulb();
+                     return;
+                }
+
+                if (currentClimbStep >= dynamicClimbingSteps.length) {
+                    screwInLightBulb(); 
+                    return;
                 }
                 
-                // Start climbing
-                climb();
+                const step = dynamicClimbingSteps[currentClimbStep];
+                if (!step || step.y === undefined || isNaN(step.y)) { 
+                     console.error(`[AnimationDebug] Climbing: Step ${currentClimbStep} is invalid or y is NaN:`, step);
+                     currentClimbStep++; 
+                     setTimeout(climbLadder, 400); 
+                     return;
+                }
+                console.log(`[AnimationDebug] Climbing step ${currentClimbStep}: translateY(-${step.y}px).`);
+                stickFigure.style.transform = `translateX(${stickFigureTranslateXOnLadder_global || 0}px) translateY(-${step.y}px)`;
+                animateLimbs(step); 
+                
+                currentClimbStep++;
+                setTimeout(climbLadder, 400); 
             }
             
-            // Function to screw in the light bulb
             function screwInLightBulb() {
-                // Position stick figure close to the light
-                stickFigure.style.transform = `translateY(-230px) translateX(100px)`;
+                leftArm.setAttribute('x2', '45'); 
+                leftArm.setAttribute('y2', '30'); 
+                rightArm.setAttribute('x2', '55'); 
+                rightArm.setAttribute('y2', '30');
                 
-                // Move arms to reaching up position
-                leftArm.setAttribute('x2', '40');
-                leftArm.setAttribute('y2', '20');
-                rightArm.setAttribute('x2', '60');
-                rightArm.setAttribute('y2', '20');
-                
-                // Animation for screwing in the bulb
                 let rotations = 0;
+                const screwDuration = 1500; 
+                const intervalTime = 100;
                 let screwAngle = 0;
-                
+
                 const screwInterval = setInterval(() => {
-                    // Rotate the figure slightly to simulate screwing motion
-                    screwAngle = (screwAngle + 15) % 30;
-                    const wiggle = screwAngle - 15;
-                    
-                    stickFigure.style.transform = `translateY(-230px) translateX(100px) rotate(${wiggle}deg)`;
-                    
+                    screwAngle = (rotations % 2 === 0) ? 5 : -5; 
+                    stickFigure.style.transform = `translateX(${stickFigureTranslateXOnLadder_global || 0}px) translateY(-${climbTopY_global || 0}px) rotate(${screwAngle}deg)`;
                     rotations++;
                     
-                    if (rotations >= 12) {  // 3 complete rotations (12 * 15deg = 180deg)
+                    if ((rotations * intervalTime) >= screwDuration) {
                         clearInterval(screwInterval);
-                        
-                        // Light up the bulb
-                        lightFixture.classList.add('light-glow');
-                        
-                        // Change theme after a short delay
-                        setTimeout(() => {
+                        stickFigure.style.transform = `translateX(${stickFigureTranslateXOnLadder_global || 0}px) translateY(-${climbTopY_global || 0}px)`; 
+                        lightFixture.classList.add('light-glow'); 
+                        setTimeout(() => { 
                             changeToLightTheme();
-                            
-                            // Climb back down after lighting
-                            setTimeout(climbDown, 1000);
+                            setTimeout(prepareClimbDown, 1000); 
                         }, 500);
                     }
-                }, 150);
+                }, intervalTime);
+            }
+
+            function prepareClimbDown() {
+                 if (!dynamicClimbingSteps || dynamicClimbingSteps.length === 0) {
+                    resetToNormalPose(); return; 
+                }
+                animateLimbs(dynamicClimbingSteps[dynamicClimbingSteps.length-1]); 
+                currentClimbStep = dynamicClimbingSteps.length - 2; 
+                climbDown();
             }
             
-            // Function to climb down the ladder
             function climbDown() {
-                // Reset arm positions before climbing down
-                leftArm.setAttribute('x2', '30');
-                leftArm.setAttribute('y2', '70');
-                rightArm.setAttribute('x2', '70');
-                rightArm.setAttribute('y2', '50');
-                
-                // Create steps for climbing down (reverse of climbing up)
-                const descendingSteps = [...climbingSteps].reverse();
-                descendingSteps.push({ y: 0, leftLeg: 0, rightLeg: 0, leftArm: 0, rightArm: 0 }); // Final ground position
-                
-                // Starting from the top position
-                let climbStep = 0;
-                
-                // Move figure back to ladder position
-                stickFigure.style.transform = `translateY(-230px)`;
-                
-                // Climb down animation
-                function descendStep() {
-                    if (climbStep >= descendingSteps.length) {
-                        // Reached the bottom, reset to normal pose
-                        resetToNormalPose();
-                        return;
-                    }
-                    
-                    // Get current step
-                    const step = descendingSteps[climbStep];
-                    
-                    // Move the entire figure down
-                    stickFigure.style.transform = `translateY(-${step.y}px)`;
-                    
-                    // Adjust limbs for climbing pose
-                    document.querySelector('.left-leg').setAttribute('x2', 35 + step.leftLeg);
-                    document.querySelector('.right-leg').setAttribute('x2', 65 + step.rightLeg);
-                    document.querySelector('.left-arm').setAttribute('x2', 30 + step.leftArm);
-                    document.querySelector('.right-arm').setAttribute('x2', 70 + step.rightArm);
-                    
-                    // Next step
-                    climbStep++;
-                    
-                    // Continue descending after delay
-                    setTimeout(descendStep, 600);
+                if (!dynamicClimbingSteps || currentClimbStep < 0 || dynamicClimbingSteps.length === 0) {
+                    resetToNormalPose(); 
+                    return;
                 }
                 
-                // Start descending
-                descendStep();
+                const step = dynamicClimbingSteps[currentClimbStep];
+                 if (!step || step.y === undefined || isNaN(step.y)) { 
+                     console.error(`[AnimationDebug] Climbing Down: Step ${currentClimbStep} is invalid or y is NaN:`, step);
+                     resetToNormalPose(); 
+                     return;
+                }
+                stickFigure.style.transform = `translateX(${stickFigureTranslateXOnLadder_global || 0}px) translateY(-${step.y}px)`;
+                animateLimbs(step);
+                
+                currentClimbStep--;
+                setTimeout(climbDown, 400);
             }
             
-            // Reset to normal standing pose
             function resetToNormalPose() {
-                // Hide ladder after a short delay but keep the ceiling and light
-                setTimeout(() => {
+                stickFigure.style.transform = 'translateX(0px) translateY(0px)';
+                leftLeg.setAttribute('x2', '35');
+                rightLeg.setAttribute('x2', '65');
+                leftArm.setAttribute('x2', '30');
+                leftArm.setAttribute('y2', '70'); 
+                rightArm.setAttribute('x2', '70');
+                rightArm.setAttribute('y2', '50'); 
+                
+                setTimeout(() => { 
                     ladder.style.opacity = '0';
                 }, 1000);
-                
-                // Reset limb positions
-                document.querySelector('.left-leg').setAttribute('x2', '35');
-                document.querySelector('.right-leg').setAttribute('x2', '65');
-                document.querySelector('.left-arm').setAttribute('x2', '30');
-                document.querySelector('.right-arm').setAttribute('x2', '70');
-                document.querySelector('.right-arm').setAttribute('y2', '50');
-                
-                // Reset transform
-                stickFigure.style.transform = 'translateY(0)';
             }
             
-            // Start with a wave
-            wave();
+            wave(); 
         }
-    </script>
-</body>
-</html>
     </script>
 </body>
 </html>
