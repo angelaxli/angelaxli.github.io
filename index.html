@@ -571,25 +571,30 @@
 
         function getElementHeight(element, numericFallbackValue) {
             if (!element) {
+                // console.warn(`[AnimationDebug] getElementHeight: Element is null/undefined. Returning fallback: ${numericFallbackValue}`);
                 return numericFallbackValue || 0;
             }
             let height = element.getBoundingClientRect().height;
             if (height && !isNaN(height) && height > 0) { 
                 return height;
             }
+            // console.warn(`[AnimationDebug] getBoundingClientRect().height for ${element.id || element.className} is ${height}. Trying offsetHeight.`);
             height = element.offsetHeight;
             if (height && !isNaN(height) && height > 0) {
                 return height;
             }
+            // console.warn(`[AnimationDebug] offsetHeight for ${element.id || element.className} is ${height}. Trying getComputedStyle.`);
             height = parseFloat(getComputedStyle(element).height);
             if (height && !isNaN(height) && height > 0) {
                 return height;
             }
+            // console.warn(`[AnimationDebug] CSS height for ${element.id || element.className} is also ${height}. Using provided numeric fallback: ${numericFallbackValue}`);
             return numericFallbackValue || 0;
         }
 
 
         function updateAnimationParameters() {
+            // console.log("[AnimationDebug] --- Updating animation parameters START ---");
             if (!animationContainer || !stickFigure || !ladder || !lightFixture || !ceiling || !lightSetup || !yearElement) {
                 cacheElements();
                  if (!animationContainer || !stickFigure || !ladder || !lightFixture || !ceiling || !lightSetup || !yearElement) {
@@ -600,15 +605,19 @@
 
             const animContainerHeight = getElementHeight(animationContainer, 400); 
             const animContainerRect = animationContainer.getBoundingClientRect(); 
+            // console.log(`[AnimationDebug] animContainerHeight: ${animContainerHeight}px, animContainerViewportTop: ${animContainerRect.top}px`);
 
             const yearRect = yearElement.getBoundingClientRect();
             const yearElementHeight = getElementHeight(yearElement, 30); 
             const yearBottom_viewport = yearRect.bottom; 
+            // console.log(`[AnimationDebug] Year Element: viewportTop=${yearRect.top}px, height=${yearElementHeight}px, viewportBottom=${yearBottom_viewport}px`);
 
             const targetCeilingTop_viewport = yearBottom_viewport + (yearElementHeight * 0.08);
+            // console.log(`[AnimationDebug] Target Ceiling Top (Viewport): ${targetCeilingTop_viewport}px`);
 
             const lightSetupViewportTop = animContainerRect.top; 
             let finalCeilingTop_relativeToLightSetup = targetCeilingTop_viewport - lightSetupViewportTop;
+            // console.log(`[AnimationDebug] Light Setup Viewport Top: ${lightSetupViewportTop}px`);
             
             const minCeilingTopRel = animContainerHeight * 0.05; 
             const maxCeilingTopRel = animContainerHeight * 0.50; 
@@ -618,10 +627,12 @@
                 finalCeilingTop_relativeToLightSetup = maxCeilingTopRel;
             }
             ceiling.style.top = finalCeilingTop_relativeToLightSetup + 'px';
+            // console.log(`[AnimationDebug] Ceiling: finalTop_relativeToLightSetup=${finalCeilingTop_relativeToLightSetup}px`);
 
             const lightFixtureElementHeight = getElementHeight(lightFixture, 40); 
             let finalLightFixtureTopCssValue = finalCeilingTop_relativeToLightSetup + 5; 
             lightFixture.style.top = finalLightFixtureTopCssValue + 'px';
+            // console.log(`[AnimationDebug] Light Fixture: elementHeight=${lightFixtureElementHeight}px, finalTopCssValue=${finalLightFixtureTopCssValue}px`);
             
             const ladderCssBottom = parseFloat(getComputedStyle(ladder).bottom); 
             const lightFixtureBottom_relativeToLightSetup = finalLightFixtureTopCssValue + lightFixtureElementHeight;
@@ -632,6 +643,8 @@
             let newLadderHeightCalculated = (animContainerHeight - ladderCssBottom) - ladderTopTarget_relativeToLightSetup;
             newLadderHeightCalculated = Math.max(animContainerHeight * 0.2, newLadderHeightCalculated); 
             ladder.style.height = newLadderHeightCalculated + 'px';
+            // const ladderElementHeight = getElementHeight(ladder, newLadderHeightCalculated); 
+            // console.log(`[AnimationDebug] Ladder: cssBottom=${ladderCssBottom}px, newCalculatedHeight=${newLadderHeightCalculated}px, actualElementHeight=${ladderElementHeight}px`);
 
             const lightSetupRect = lightSetup.getBoundingClientRect(); 
             const ceilingStartGlobalX = lightSetupRect.left + (lightSetup.offsetWidth / 2); 
@@ -650,8 +663,10 @@
             
             const sfCssBottom = parseFloat(getComputedStyle(stickFigure).bottom); 
             const sfHeight = getElementHeight(stickFigure, 120); 
+            // console.log(`[AnimationDebug] Stick Figure: cssBottom=${sfCssBottom}px, sfHeight=${sfHeight}px`);
             
             if (sfHeight === 0 || isNaN(sfHeight) || lightFixtureElementHeight === 0 || isNaN(lightFixtureElementHeight)) {
+                // console.error("[AnimationDebug] Stick figure or Light fixture height is 0 or NaN. Setting climbTopY to 0.");
                 climbTopY_global = 0; 
             } else {
                 const sfHandsOffsetYFactor = 60 / 150; 
@@ -659,12 +674,15 @@
 
                 const sfInitialTopEdge_from_AC_Top = animContainerHeight - sfCssBottom - sfHeight;
                 const sfInitialHands_from_AC_Top = sfInitialTopEdge_from_AC_Top + sfHandsOffsetFromSFTop_px;
+                // console.log(`[AnimationDebug] Stick Figure Initial Y: topEdgeFromACTop=${sfInitialTopEdge_from_AC_Top}px, handsFromACTop=${sfInitialHands_from_AC_Top}px`);
                 
                 const lfTargetBottom_from_AC_Top = finalLightFixtureTopCssValue + lightFixtureElementHeight;
+                // console.log(`[AnimationDebug] Light Fixture Target Y (Bottom): bottomFromACTop=${lfTargetBottom_from_AC_Top}px`);
 
                 climbTopY_global = sfInitialHands_from_AC_Top - lfTargetBottom_from_AC_Top;
                 climbTopY_global = Math.max(0, climbTopY_global); 
             }
+            // console.log(`[AnimationDebug] FINAL climbTopY_global: ${climbTopY_global}px`);
 
             const baseStepYPercentages = [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1]; 
             dynamicClimbingSteps = baseStepYPercentages.map((p, index) => ({
@@ -683,12 +701,14 @@
             
             if (climbTopY_global < 5 || isNaN(climbTopY_global)) { 
                 dynamicClimbingSteps = [{ y: 0, lL: 0, rL: 0, lA: 0, rA: 0 }];
+                // console.log("[AnimationDebug] Climb distance very small or NaN, setting to no climb steps.");
             }
+            // console.log("[AnimationDebug] --- Parameter update finished ---");
         }
 
         function setupThemeToggle() {
             if (!themeCheckbox) {
-                console.error("[AnimationDebug] Theme checkbox not found for setup!");
+                // console.error("[AnimationDebug] Theme checkbox not found for setup!");
                 return;
             }
             themeCheckbox.checked = isLightTheme; 
@@ -742,6 +762,7 @@
 
 
         window.onload = () => {
+            // console.log("[AnimationDebug] window.onload fired.");
             cacheElements(); 
             setupThemeToggle(); 
 
@@ -754,22 +775,25 @@
                 });
             }, 300); 
             
-            requestAnimationFrame(() => { 
-                updateAnimationParameters(); 
-                window.addEventListener('resize', () => {
-                    requestAnimationFrame(updateAnimationParameters); 
-                });
+            // Increased delay for initial parameter calculation, especially for GitHub Pages
+            setTimeout(() => {
+                requestAnimationFrame(() => { 
+                    updateAnimationParameters(); 
+                    window.addEventListener('resize', () => {
+                        requestAnimationFrame(updateAnimationParameters); 
+                    });
 
-                setTimeout(() => { 
-                    if (stickFigure && ladder && lightFixture && ceiling) { 
-                        currentClimbShouldTurnLightOn = true; 
-                        animationInProgress = true;
-                        wave(); 
-                    } else {
-                        console.error("[AnimationDebug] Crucial elements missing before starting initial animation.");
-                    }
-                }, 1200); 
-            });
+                    setTimeout(() => { 
+                        if (stickFigure && ladder && lightFixture && ceiling) { 
+                            currentClimbShouldTurnLightOn = true; 
+                            animationInProgress = true;
+                            wave(); 
+                        } else {
+                            console.error("[AnimationDebug] Crucial elements missing before starting initial animation.");
+                        }
+                    }, 1200); 
+                });
+            }, 500); // Increased delay for initial parameter calculation
         };
         
         const cursorDot = document.getElementById('cursor-dot');
@@ -859,6 +883,7 @@
                  setTimeout(climbLadder, 400); 
                  return;
             }
+            // console.log(`[AnimationDebug] Climbing step ${currentClimbStep}: translateY(-${step.y}px).`);
             stickFigure.style.transform = `translateX(${stickFigureTranslateXOnLadder_global || 0}px) translateY(-${step.y}px)`;
             animateLimbs(step); 
             
@@ -947,3 +972,4 @@
     </script>
 </body>
 </html>
+
