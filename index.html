@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -61,7 +61,80 @@
             display: flex;
             align-items: center;
         }
+
+        .theme-switch-wrapper {
+            display: flex;
+            align-items: center;
+            margin-right: 20px; 
+        }
+        .theme-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px; 
+            height: 28px; 
+        }
+        .theme-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #333; /* Darker grey for dark mode (switch off) */
+            border: 1px solid #fff; /* White border in dark mode */
+            transition: .4s;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px; 
+            width: 20px; 
+            left: 3px; /* Adjusted for border */
+            bottom: 3px; /* Adjusted for border */
+            background-color: white; 
+            transition: .4s;
+        }
         
+        input:checked + .slider { /* Light mode active */
+            background-color: #ddd; /* Light grey background for light mode */
+            border-color: #000; /* Black border in light mode */
+        }
+        input:checked + .slider:before {
+            transform: translateX(22px);
+            background-color: #333; /* Dark knob for light mode */
+        }
+        .slider.round {
+            border-radius: 28px; 
+        }
+        .slider.round:before {
+            border-radius: 50%;
+        }
+
+        /* Styles for when body has .light-theme but switch might be forced to an opposite state during animation */
+        body.light-theme .theme-switch-wrapper input:not(:checked) + .slider {
+            background-color: #333; /* Should look like dark mode switch */
+            border-color: #fff;
+        }
+         body.light-theme .theme-switch-wrapper input:not(:checked) + .slider:before {
+            background-color: white;
+            transform: translateX(0px); /* Ensure it's on the left */
+        }
+        /* Styles for when body is dark (no .light-theme) but switch might be forced to checked */
+        body:not(.light-theme) .theme-switch-wrapper input:checked + .slider {
+            background-color: #ddd; /* Should look like light mode switch */
+            border-color: #000;
+        }
+        body:not(.light-theme) .theme-switch-wrapper input:checked + .slider:before {
+            background-color: #333;
+            transform: translateX(22px); /* Ensure it's on the right */
+        }
+
+
         .arrow-icon {
             width: 40px;
             height: 40px;
@@ -103,7 +176,7 @@
             letter-spacing: -0.02em;
         }
         
-        .year { /* This element's position will influence the animation */
+        .year { 
             position: absolute;
             top: 20%;
             right: 10%;
@@ -112,7 +185,6 @@
             letter-spacing: 0.05em;
             transform: rotate(10deg);
             opacity: 0.8;
-            /* background-color: rgba(255,0,0,0.2); */ /* For visual debugging */
         }
         
         .categories {
@@ -143,7 +215,6 @@
             height: 400px; 
             pointer-events: none; 
             z-index: 2; 
-            /* border: 1px solid yellow; */
         }
 
         #ceiling {
@@ -168,7 +239,6 @@
             z-index: 4; 
             width: 40px; 
             height: 40px; 
-            /* border: 1px solid cyan; */
         }
         
         .light-glow {
@@ -176,7 +246,7 @@
         }
         .light-glow .bulb-shape { 
             fill: rgba(255, 255, 100, 0.7);
-            stroke: #FFFF64; 
+            stroke: #FFFF64 !important; 
         }
         
         body.light-theme #ceiling {
@@ -184,13 +254,14 @@
         }
         body.light-theme #light-fixture line,
         body.light-theme #light-fixture path,
-        body.light-theme #light-fixture ellipse {
+        body.light-theme #light-fixture ellipse:not(.bulb-shape.light-glow *) { 
             stroke: #000;
         }
-        body.light-theme .light-glow .bulb-shape {
-             fill: rgba(50, 50, 0, 0.7); 
-             stroke: #323200;
+        body.light-theme #light-fixture .bulb-shape:not(.light-glow .bulb-shape) {
+             stroke: #000;
+             fill: none; 
         }
+
         
         #animation-container { 
             position: absolute;
@@ -199,7 +270,6 @@
             width: 200px;
             height: 400px;
             z-index: 10; 
-            /* border: 1px dotted blue; */
         }
         
         #stick-figure {
@@ -210,7 +280,6 @@
             height: 120px; 
             z-index: 15; 
             transition: transform 0.5s ease-out; 
-            /* border: 1px dotted green; */
         }
         
         #ladder {
@@ -222,7 +291,6 @@
             opacity: 0;
             transition: opacity 0.5s ease, height 0.3s ease;
             z-index: 5; 
-            /* border: 1px dotted orange; */
         }
         
         footer {
@@ -344,6 +412,9 @@
             .header-center {
                 display: none;
             }
+            .theme-switch-wrapper {
+                margin-right: 10px;
+            }
             .categories {
                 margin-top: 3vh;
             }
@@ -369,7 +440,7 @@
             }
             .year {
                 font-size: 5vw;
-                top: 15%; /* Adjust for smaller screens if needed */
+                top: 15%; 
             }
         }
     </style>
@@ -383,6 +454,12 @@
             <div class="header-left">Computer Science</div>
             <div class="header-center">Portfolio</div>
             <div class="header-right">
+                <div class="theme-switch-wrapper">
+                    <label class="theme-switch" for="theme-checkbox">
+                        <input type="checkbox" id="theme-checkbox" />
+                        <div class="slider round"></div>
+                    </label>
+                </div>
                 <a href="#projects" class="arrow-icon">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -459,13 +536,21 @@
     </div>
 
     <script>
-        // Global parameters for animation, updated on resize
+        // Global parameters for animation
         let climbTopY_global = 0; 
         let stickFigureTranslateXOnLadder_global = 0; 
         let dynamicClimbingSteps = [];
 
         // DOM Elements
-        let stickFigure, ladder, lightFixture, ceiling, rightArm, leftArm, leftLeg, rightLeg, animationContainer, lightSetup, yearElement;
+        let stickFigure, ladder, lightFixture, ceiling, rightArm, leftArm, leftLeg, rightLeg, animationContainer, lightSetup, yearElement, themeCheckbox;
+        
+        // Animation State
+        let isLightTheme = false; // Initial theme is dark
+        let animationInProgress = false;
+        let initialAnimationComplete = false;
+        let currentClimbShouldTurnLightOn = true; 
+        let currentClimbStep = 0;
+
 
         function cacheElements() {
             stickFigure = document.getElementById('stick-figure');
@@ -475,6 +560,7 @@
             animationContainer = document.getElementById('animation-container');
             lightSetup = document.getElementById('light-setup'); 
             yearElement = document.querySelector('.year'); 
+            themeCheckbox = document.getElementById('theme-checkbox');
             if (stickFigure) {
                 rightArm = stickFigure.querySelector('.right-arm');
                 leftArm = stickFigure.querySelector('.left-arm');
@@ -485,35 +571,26 @@
 
         function getElementHeight(element, numericFallbackValue) {
             if (!element) {
-                console.warn(`[AnimationDebug] getElementHeight: Element is null/undefined. Returning fallback: ${numericFallbackValue}`);
                 return numericFallbackValue || 0;
             }
             let height = element.getBoundingClientRect().height;
-            if (height && !isNaN(height) && height > 0) { // Check for valid positive number
+            if (height && !isNaN(height) && height > 0) { 
                 return height;
             }
-
-            console.warn(`[AnimationDebug] getBoundingClientRect().height for ${element.id || element.className} is ${height}. Trying offsetHeight.`);
             height = element.offsetHeight;
             if (height && !isNaN(height) && height > 0) {
                 return height;
             }
-            
-            console.warn(`[AnimationDebug] offsetHeight for ${element.id || element.className} is ${height}. Trying getComputedStyle.`);
             height = parseFloat(getComputedStyle(element).height);
             if (height && !isNaN(height) && height > 0) {
                 return height;
             }
-
-            console.warn(`[AnimationDebug] CSS height for ${element.id || element.className} is also ${height}. Using provided numeric fallback: ${numericFallbackValue}`);
             return numericFallbackValue || 0;
         }
 
 
         function updateAnimationParameters() {
-            console.log("[AnimationDebug] --- Updating animation parameters START ---");
             if (!animationContainer || !stickFigure || !ladder || !lightFixture || !ceiling || !lightSetup || !yearElement) {
-                console.warn("[AnimationDebug] updateAnimationParameters: Critical elements null, attempting to re-cache.");
                 cacheElements();
                  if (!animationContainer || !stickFigure || !ladder || !lightFixture || !ceiling || !lightSetup || !yearElement) {
                     console.error("[AnimationDebug] updateAnimationParameters: Critical elements STILL null after re-cache. Aborting update.");
@@ -521,45 +598,31 @@
                  }
             }
 
-            const animContainerHeight = getElementHeight(animationContainer, 400); // Fallback to CSS defined height
+            const animContainerHeight = getElementHeight(animationContainer, 400); 
             const animContainerRect = animationContainer.getBoundingClientRect(); 
-            console.log(`[AnimationDebug] animContainerHeight: ${animContainerHeight}px, animContainerViewportTop: ${animContainerRect.top}px`);
-            if (animContainerHeight === 0) {
-                console.warn("[AnimationDebug] animContainerHeight is 0.");
-            }
 
-            // --- Positioning based on ".year" element ---
             const yearRect = yearElement.getBoundingClientRect();
-            const yearElementHeight = getElementHeight(yearElement, 30); // Provide a numeric fallback for year element
+            const yearElementHeight = getElementHeight(yearElement, 30); 
             const yearBottom_viewport = yearRect.bottom; 
-            console.log(`[AnimationDebug] Year Element: viewportTop=${yearRect.top}px, height=${yearElementHeight}px, viewportBottom=${yearBottom_viewport}px`);
 
             const targetCeilingTop_viewport = yearBottom_viewport + (yearElementHeight * 0.08);
-            console.log(`[AnimationDebug] Target Ceiling Top (Viewport): ${targetCeilingTop_viewport}px`);
 
             const lightSetupViewportTop = animContainerRect.top; 
             let finalCeilingTop_relativeToLightSetup = targetCeilingTop_viewport - lightSetupViewportTop;
-            console.log(`[AnimationDebug] Light Setup Viewport Top: ${lightSetupViewportTop}px`);
             
             const minCeilingTopRel = animContainerHeight * 0.05; 
             const maxCeilingTopRel = animContainerHeight * 0.50; 
             if (finalCeilingTop_relativeToLightSetup < minCeilingTopRel || isNaN(finalCeilingTop_relativeToLightSetup)) {
-                console.warn(`[AnimationDebug] Calculated ceiling top (${finalCeilingTop_relativeToLightSetup}px) too high or NaN. Clamping to ${minCeilingTopRel}px.`);
                 finalCeilingTop_relativeToLightSetup = minCeilingTopRel;
             } else if (finalCeilingTop_relativeToLightSetup > maxCeilingTopRel) {
-                console.warn(`[AnimationDebug] Calculated ceiling top (${finalCeilingTop_relativeToLightSetup}px) too low. Clamping to ${maxCeilingTopRel}px.`);
                 finalCeilingTop_relativeToLightSetup = maxCeilingTopRel;
             }
             ceiling.style.top = finalCeilingTop_relativeToLightSetup + 'px';
-            console.log(`[AnimationDebug] Ceiling: finalTop_relativeToLightSetup=${finalCeilingTop_relativeToLightSetup}px`);
 
-            // --- Light Fixture Positioning ---
-            const lightFixtureElementHeight = getElementHeight(lightFixture, 40); // Numeric fallback
+            const lightFixtureElementHeight = getElementHeight(lightFixture, 40); 
             let finalLightFixtureTopCssValue = finalCeilingTop_relativeToLightSetup + 5; 
             lightFixture.style.top = finalLightFixtureTopCssValue + 'px';
-            console.log(`[AnimationDebug] Light Fixture: elementHeight=${lightFixtureElementHeight}px, finalTopCssValue=${finalLightFixtureTopCssValue}px`);
             
-            // --- Ladder Height & Positioning ---
             const ladderCssBottom = parseFloat(getComputedStyle(ladder).bottom); 
             const lightFixtureBottom_relativeToLightSetup = finalLightFixtureTopCssValue + lightFixtureElementHeight;
             const gapBelowLightFixture = animContainerHeight * 0.05; 
@@ -569,16 +632,12 @@
             let newLadderHeightCalculated = (animContainerHeight - ladderCssBottom) - ladderTopTarget_relativeToLightSetup;
             newLadderHeightCalculated = Math.max(animContainerHeight * 0.2, newLadderHeightCalculated); 
             ladder.style.height = newLadderHeightCalculated + 'px';
-            const ladderElementHeight = getElementHeight(ladder, newLadderHeightCalculated); // Use calculated height as fallback
-            console.log(`[AnimationDebug] Ladder: cssBottom=${ladderCssBottom}px, newCalculatedHeight=${newLadderHeightCalculated}px, actualElementHeight=${ladderElementHeight}px`);
 
-            // --- Ceiling Width Extension ---
             const lightSetupRect = lightSetup.getBoundingClientRect(); 
             const ceilingStartGlobalX = lightSetupRect.left + (lightSetup.offsetWidth / 2); 
             const viewportWidth = document.documentElement.clientWidth;
             ceiling.dataset.targetWidth = Math.max(0, viewportWidth - ceilingStartGlobalX) + 'px';
 
-            // --- Stick Figure X Translation to Ladder ---
             if (ladder.offsetLeft !== undefined && stickFigure.offsetLeft !== undefined && ladder.offsetWidth !== undefined && stickFigure.offsetWidth !== undefined) {
                  stickFigureTranslateXOnLadder_global = (ladder.offsetLeft + ladder.offsetWidth / 2) - (stickFigure.offsetLeft + stickFigure.offsetWidth / 2);
             } else {
@@ -589,13 +648,10 @@
                 stickFigureTranslateXOnLadder_global = (defaultLadderLeft + defaultLadderWidth / 2) - (defaultStickFigureLeft + defaultStickFigureWidth / 2);
             }
             
-            // --- 6. Recalculate climbTopY_global for stick figure's HANDS to reach BOTTOM of light fixture ---
             const sfCssBottom = parseFloat(getComputedStyle(stickFigure).bottom); 
-            const sfHeight = getElementHeight(stickFigure, 120); // Numeric fallback
-            console.log(`[AnimationDebug] Stick Figure: cssBottom=${sfCssBottom}px, sfHeight=${sfHeight}px`);
+            const sfHeight = getElementHeight(stickFigure, 120); 
             
             if (sfHeight === 0 || isNaN(sfHeight) || lightFixtureElementHeight === 0 || isNaN(lightFixtureElementHeight)) {
-                console.error("[AnimationDebug] Stick figure or Light fixture height is 0 or NaN. Setting climbTopY to 0.");
                 climbTopY_global = 0; 
             } else {
                 const sfHandsOffsetYFactor = 60 / 150; 
@@ -603,17 +659,13 @@
 
                 const sfInitialTopEdge_from_AC_Top = animContainerHeight - sfCssBottom - sfHeight;
                 const sfInitialHands_from_AC_Top = sfInitialTopEdge_from_AC_Top + sfHandsOffsetFromSFTop_px;
-                console.log(`[AnimationDebug] Stick Figure Initial Y: topEdgeFromACTop=${sfInitialTopEdge_from_AC_Top}px, handsFromACTop=${sfInitialHands_from_AC_Top}px`);
                 
                 const lfTargetBottom_from_AC_Top = finalLightFixtureTopCssValue + lightFixtureElementHeight;
-                console.log(`[AnimationDebug] Light Fixture Target Y (Bottom): bottomFromACTop=${lfTargetBottom_from_AC_Top}px`);
 
                 climbTopY_global = sfInitialHands_from_AC_Top - lfTargetBottom_from_AC_Top;
                 climbTopY_global = Math.max(0, climbTopY_global); 
             }
-            console.log(`[AnimationDebug] FINAL climbTopY_global: ${climbTopY_global}px`);
 
-            // --- 7. Update dynamicClimbingSteps y-values based on climbTopY_global ---
             const baseStepYPercentages = [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1]; 
             dynamicClimbingSteps = baseStepYPercentages.map((p, index) => ({
                 y: climbTopY_global * p, 
@@ -631,14 +683,67 @@
             
             if (climbTopY_global < 5 || isNaN(climbTopY_global)) { 
                 dynamicClimbingSteps = [{ y: 0, lL: 0, rL: 0, lA: 0, rA: 0 }];
-                console.log("[AnimationDebug] Climb distance very small or NaN, setting to no climb steps.");
             }
-            console.log("[AnimationDebug] --- Parameter update finished ---");
         }
 
+        function setupThemeToggle() {
+            if (!themeCheckbox) {
+                console.error("[AnimationDebug] Theme checkbox not found for setup!");
+                return;
+            }
+            themeCheckbox.checked = isLightTheme; 
+
+            themeCheckbox.addEventListener('change', () => {
+                if (animationInProgress || !initialAnimationComplete) {
+                    themeCheckbox.checked = isLightTheme; 
+                    return;
+                }
+                animateThemeChange(themeCheckbox.checked); 
+            });
+        }
+
+        function animateThemeChange(turnLightOn) { 
+            if (animationInProgress) return;
+            animationInProgress = true;
+            currentClimbShouldTurnLightOn = turnLightOn;
+            currentClimbStep = 0; 
+            wave(); 
+        }
+        
+        function applyThemeChange(turnLightOnState) { 
+            isLightTheme = turnLightOnState; 
+            
+            if (isLightTheme) {
+                document.body.classList.add('light-theme');
+            } else {
+                document.body.classList.remove('light-theme');
+            }
+            if(themeCheckbox) themeCheckbox.checked = isLightTheme; 
+
+            const newStrokeColor = isLightTheme ? 'black' : 'white';
+
+            document.querySelectorAll('#stick-figure line, #stick-figure circle, #ladder line').forEach(el => {
+                el.setAttribute('stroke', newStrokeColor);
+            });
+
+            document.querySelectorAll('#light-fixture line, #light-fixture path, #light-fixture ellipse').forEach(el => {
+                if (el.classList.contains('bulb-shape')) {
+                    if (lightFixture.classList.contains('light-glow')) { 
+                        el.setAttribute('stroke', '#FFFF64'); 
+                    } else { 
+                        el.setAttribute('stroke', newStrokeColor); 
+                        el.style.fill = 'none'; 
+                    }
+                } else { 
+                    el.setAttribute('stroke', newStrokeColor);
+                }
+            });
+        }
+
+
         window.onload = () => {
-            console.log("[AnimationDebug] window.onload fired.");
             cacheElements(); 
+            setupThemeToggle(); 
 
             const elementsToFadeIn = document.querySelectorAll('.hidden');
             setTimeout(() => { 
@@ -657,9 +762,11 @@
 
                 setTimeout(() => { 
                     if (stickFigure && ladder && lightFixture && ceiling) { 
-                        startAnimation();
+                        currentClimbShouldTurnLightOn = true; 
+                        animationInProgress = true;
+                        wave(); 
                     } else {
-                        console.error("[AnimationDebug] Crucial elements missing before starting animation.");
+                        console.error("[AnimationDebug] Crucial elements missing before starting initial animation.");
                     }
                 }, 1200); 
             });
@@ -687,169 +794,155 @@
             if(cursorCircle) cursorCircle.style.display = 'none';
         }
         
-        function changeToLightTheme() {
-            document.body.classList.add('light-theme');
-            document.querySelectorAll('#stick-figure line, #stick-figure circle, #ladder line, #light-fixture line, #light-fixture path, #light-fixture ellipse').forEach(el => {
-                if (!el.classList.contains('bulb-shape')) {
-                    el.setAttribute('stroke', 'black');
-                }
-            });
+        function animateLimbs(step) {
+            if (!step) { return; }
+            leftLeg.setAttribute('x2', 35 + step.lL);
+            rightLeg.setAttribute('x2', 65 + step.rL);
+            leftArm.setAttribute('x2', 30 + step.lA);
+            rightArm.setAttribute('y2', 50); 
+            rightArm.setAttribute('x2', 70 + step.rA);
         }
         
-        function startAnimation() {
-            if (!stickFigure || !ladder || !lightFixture || !ceiling || !rightArm || !leftArm || !leftLeg || !rightLeg) {
-                console.error("[AnimationDebug] startAnimation: Cannot start, critical elements are null.");
+        function wave() {
+            const originalX2 = 70; 
+            const originalY2 = 50; 
+            let waveTime = 0;
+            const waveDuration = 2000; 
+            const intervalTime = 50;  
+            
+            const waveInterval = setInterval(() => {
+                waveTime += intervalTime;
+                const waveY = originalY2 - 15 * Math.sin((waveTime / waveDuration) * Math.PI * 4); 
+                rightArm.setAttribute('x2', originalX2);
+                rightArm.setAttribute('y2', waveY);
+                
+                if (waveTime >= waveDuration) {
+                    clearInterval(waveInterval);
+                    rightArm.setAttribute('x2', originalX2); 
+                    rightArm.setAttribute('y2', originalY2);
+                    moveToLadderAndPrepareClimb(); 
+                }
+            }, intervalTime);
+        }
+
+        function moveToLadderAndPrepareClimb() {
+            stickFigure.style.transform = `translateX(${stickFigureTranslateXOnLadder_global || 0}px)`;
+            setTimeout(() => { 
+                ladder.style.opacity = '1';
+                ceiling.style.width = ceiling.dataset.targetWidth || '80px'; 
+                setTimeout(() => { 
+                    lightFixture.style.opacity = '1';
+                    setTimeout(climbLadder, 500); 
+                }, 700); 
+            }, 500); 
+        }
+        
+        function climbLadder() {
+            if (!dynamicClimbingSteps || dynamicClimbingSteps.length === 0) {
+                interactWithLightBulbAtTop(currentClimbShouldTurnLightOn); 
                 return;
             }
-            let currentClimbStep = 0;
-            console.log("[AnimationDebug] Starting animation sequence. climbTopY_global:", climbTopY_global, "Num steps:", dynamicClimbingSteps.length);
+            if (dynamicClimbingSteps.length === 1 && dynamicClimbingSteps[0].y === 0 && currentClimbStep === 0) {
+                 interactWithLightBulbAtTop(currentClimbShouldTurnLightOn);
+                 return;
+            }
 
-            function animateLimbs(step) {
-                if (!step) { console.warn("[AnimationDebug] animateLimbs: step is undefined."); return; }
-                leftLeg.setAttribute('x2', 35 + step.lL);
-                rightLeg.setAttribute('x2', 65 + step.rL);
-                leftArm.setAttribute('x2', 30 + step.lA);
-                rightArm.setAttribute('y2', 50); 
-                rightArm.setAttribute('x2', 70 + step.rA);
+            if (currentClimbStep >= dynamicClimbingSteps.length) {
+                interactWithLightBulbAtTop(currentClimbShouldTurnLightOn); 
+                return;
             }
             
-            function wave() {
-                const originalX2 = 70; 
-                const originalY2 = 50; 
-                let waveTime = 0;
-                const waveDuration = 2000; 
-                const intervalTime = 50;  
-                
-                const waveInterval = setInterval(() => {
-                    waveTime += intervalTime;
-                    const waveY = originalY2 - 15 * Math.sin((waveTime / waveDuration) * Math.PI * 4); 
-                    rightArm.setAttribute('x2', originalX2);
-                    rightArm.setAttribute('y2', waveY);
-                    
-                    if (waveTime >= waveDuration) {
-                        clearInterval(waveInterval);
-                        rightArm.setAttribute('x2', originalX2); 
-                        rightArm.setAttribute('y2', originalY2);
-                        moveToLadderAndPrepareClimb(); 
-                    }
-                }, intervalTime);
+            const step = dynamicClimbingSteps[currentClimbStep];
+            if (!step || step.y === undefined || isNaN(step.y)) { 
+                 console.error(`[AnimationDebug] Climbing: Step ${currentClimbStep} is invalid or y is NaN:`, step);
+                 currentClimbStep++; 
+                 setTimeout(climbLadder, 400); 
+                 return;
             }
+            stickFigure.style.transform = `translateX(${stickFigureTranslateXOnLadder_global || 0}px) translateY(-${step.y}px)`;
+            animateLimbs(step); 
+            
+            currentClimbStep++;
+            setTimeout(climbLadder, 400); 
+        }
+        
+        function interactWithLightBulbAtTop(turnLightOn) { 
+            leftArm.setAttribute('x2', '45'); 
+            leftArm.setAttribute('y2', '30'); 
+            rightArm.setAttribute('x2', '55'); 
+            rightArm.setAttribute('y2', '30');
+            
+            let rotations = 0;
+            const screwDuration = 1500; 
+            const intervalTime = 100;
+            let screwAngle = 0;
 
-            function moveToLadderAndPrepareClimb() {
-                stickFigure.style.transform = `translateX(${stickFigureTranslateXOnLadder_global || 0}px)`;
-                setTimeout(() => { 
-                    ladder.style.opacity = '1';
-                    ceiling.style.width = ceiling.dataset.targetWidth || '80px'; 
+            const screwInterval = setInterval(() => {
+                screwAngle = (rotations % 2 === 0) ? 5 : -5; 
+                stickFigure.style.transform = `translateX(${stickFigureTranslateXOnLadder_global || 0}px) translateY(-${climbTopY_global || 0}px) rotate(${screwAngle}deg)`;
+                rotations++;
+                
+                if ((rotations * intervalTime) >= screwDuration) {
+                    clearInterval(screwInterval);
+                    stickFigure.style.transform = `translateX(${stickFigureTranslateXOnLadder_global || 0}px) translateY(-${climbTopY_global || 0}px)`; 
+                    
+                    if (turnLightOn) {
+                        lightFixture.classList.add('light-glow');
+                    } else {
+                        lightFixture.classList.remove('light-glow');
+                    }
+                    
                     setTimeout(() => { 
-                        lightFixture.style.opacity = '1';
-                        setTimeout(climbLadder, 500); 
-                    }, 700); 
-                }, 500); 
-            }
-            
-            function climbLadder() {
-                if (!dynamicClimbingSteps || dynamicClimbingSteps.length === 0) {
-                    console.warn("[AnimationDebug] No climbing steps. Proceeding to screwInLightBulb().");
-                    screwInLightBulb(); 
-                    return;
+                        applyThemeChange(turnLightOn); 
+                        setTimeout(prepareClimbDown, 1000); 
+                    }, 500);
                 }
-                if (dynamicClimbingSteps.length === 1 && dynamicClimbingSteps[0].y === 0 && currentClimbStep === 0) {
-                     console.log("[AnimationDebug] No climb needed. Proceeding to screwInLightBulb().");
-                     screwInLightBulb();
-                     return;
-                }
+            }, intervalTime);
+        }
 
-                if (currentClimbStep >= dynamicClimbingSteps.length) {
-                    screwInLightBulb(); 
-                    return;
-                }
-                
-                const step = dynamicClimbingSteps[currentClimbStep];
-                if (!step || step.y === undefined || isNaN(step.y)) { 
-                     console.error(`[AnimationDebug] Climbing: Step ${currentClimbStep} is invalid or y is NaN:`, step);
-                     currentClimbStep++; 
-                     setTimeout(climbLadder, 400); 
-                     return;
-                }
-                console.log(`[AnimationDebug] Climbing step ${currentClimbStep}: translateY(-${step.y}px).`);
-                stickFigure.style.transform = `translateX(${stickFigureTranslateXOnLadder_global || 0}px) translateY(-${step.y}px)`;
-                animateLimbs(step); 
-                
-                currentClimbStep++;
-                setTimeout(climbLadder, 400); 
+        function prepareClimbDown() {
+             if (!dynamicClimbingSteps || dynamicClimbingSteps.length === 0) {
+                resetToNormalPose(); return; 
+            }
+            animateLimbs(dynamicClimbingSteps[dynamicClimbingSteps.length-1]); 
+            currentClimbStep = dynamicClimbingSteps.length - 2; 
+            climbDown();
+        }
+        
+        function climbDown() {
+            if (!dynamicClimbingSteps || currentClimbStep < 0 || dynamicClimbingSteps.length === 0) {
+                resetToNormalPose(); 
+                return;
             }
             
-            function screwInLightBulb() {
-                leftArm.setAttribute('x2', '45'); 
-                leftArm.setAttribute('y2', '30'); 
-                rightArm.setAttribute('x2', '55'); 
-                rightArm.setAttribute('y2', '30');
-                
-                let rotations = 0;
-                const screwDuration = 1500; 
-                const intervalTime = 100;
-                let screwAngle = 0;
-
-                const screwInterval = setInterval(() => {
-                    screwAngle = (rotations % 2 === 0) ? 5 : -5; 
-                    stickFigure.style.transform = `translateX(${stickFigureTranslateXOnLadder_global || 0}px) translateY(-${climbTopY_global || 0}px) rotate(${screwAngle}deg)`;
-                    rotations++;
-                    
-                    if ((rotations * intervalTime) >= screwDuration) {
-                        clearInterval(screwInterval);
-                        stickFigure.style.transform = `translateX(${stickFigureTranslateXOnLadder_global || 0}px) translateY(-${climbTopY_global || 0}px)`; 
-                        lightFixture.classList.add('light-glow'); 
-                        setTimeout(() => { 
-                            changeToLightTheme();
-                            setTimeout(prepareClimbDown, 1000); 
-                        }, 500);
-                    }
-                }, intervalTime);
+            const step = dynamicClimbingSteps[currentClimbStep];
+             if (!step || step.y === undefined || isNaN(step.y)) { 
+                 resetToNormalPose(); 
+                 return;
             }
-
-            function prepareClimbDown() {
-                 if (!dynamicClimbingSteps || dynamicClimbingSteps.length === 0) {
-                    resetToNormalPose(); return; 
-                }
-                animateLimbs(dynamicClimbingSteps[dynamicClimbingSteps.length-1]); 
-                currentClimbStep = dynamicClimbingSteps.length - 2; 
-                climbDown();
-            }
+            stickFigure.style.transform = `translateX(${stickFigureTranslateXOnLadder_global || 0}px) translateY(-${step.y}px)`;
+            animateLimbs(step);
             
-            function climbDown() {
-                if (!dynamicClimbingSteps || currentClimbStep < 0 || dynamicClimbingSteps.length === 0) {
-                    resetToNormalPose(); 
-                    return;
-                }
-                
-                const step = dynamicClimbingSteps[currentClimbStep];
-                 if (!step || step.y === undefined || isNaN(step.y)) { 
-                     console.error(`[AnimationDebug] Climbing Down: Step ${currentClimbStep} is invalid or y is NaN:`, step);
-                     resetToNormalPose(); 
-                     return;
-                }
-                stickFigure.style.transform = `translateX(${stickFigureTranslateXOnLadder_global || 0}px) translateY(-${step.y}px)`;
-                animateLimbs(step);
-                
-                currentClimbStep--;
-                setTimeout(climbDown, 400);
-            }
+            currentClimbStep--;
+            setTimeout(climbDown, 400);
+        }
+        
+        function resetToNormalPose() {
+            stickFigure.style.transform = 'translateX(0px) translateY(0px)';
+            leftLeg.setAttribute('x2', '35');
+            rightLeg.setAttribute('x2', '65');
+            leftArm.setAttribute('x2', '30');
+            leftArm.setAttribute('y2', '70'); 
+            rightArm.setAttribute('x2', '70');
+            rightArm.setAttribute('y2', '50'); 
             
-            function resetToNormalPose() {
-                stickFigure.style.transform = 'translateX(0px) translateY(0px)';
-                leftLeg.setAttribute('x2', '35');
-                rightLeg.setAttribute('x2', '65');
-                leftArm.setAttribute('x2', '30');
-                leftArm.setAttribute('y2', '70'); 
-                rightArm.setAttribute('x2', '70');
-                rightArm.setAttribute('y2', '50'); 
-                
-                setTimeout(() => { 
-                    ladder.style.opacity = '0';
-                }, 1000);
-            }
-            
-            wave(); 
+            setTimeout(() => { 
+                ladder.style.opacity = '0';
+                animationInProgress = false; 
+                if (!initialAnimationComplete) {
+                    initialAnimationComplete = true;
+                }
+            }, 1000);
         }
     </script>
 </body>
