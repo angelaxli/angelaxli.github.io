@@ -664,23 +664,52 @@
                 climbTopY_global = Math.max(0, climbTopY_global); 
             }
 
-            const baseStepYPercentages = [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1]; 
-            dynamicClimbingSteps = baseStepYPercentages.map((p, index) => ({
-                y: climbTopY_global * p, 
-                lL: (index % 2 !== 0 && climbTopY_global > 10) ? -5 : 0, 
-                rL: (index % 2 !== 0 && climbTopY_global > 10) ? 5 : 0,
-                lA: (index % 2 !== 0 && climbTopY_global > 10) ? -2 : 0,
-                rA: (index % 2 !== 0 && climbTopY_global > 10) ? 2 : 0
-            }));
+            // Define arm positions for climbing (relative to shoulder joint at 50,60)
+            // Arm positions: [x2_left, y2_left, x2_right, y2_right]
+            const armPos1 = [25, 45, 75, 70]; // Left arm up, right arm holding
+            const armPos2 = [25, 70, 75, 45]; // Left arm holding, right arm up
+
+            dynamicClimbingSteps = [];
+            const numSteps = 8; // Number of intermediate steps for the climb
+            for (let i = 0; i <= numSteps; i++) {
+                const progress = i / numSteps;
+                const currentY = climbTopY_global * progress;
+                let legLX = 0, legRX = 0;
+                let armSet = armPos1; // Default arm position
+
+                if (climbTopY_global > 10) { // Only animate limbs if actually climbing
+                    if (i % 2 !== 0) { // Odd steps
+                        legLX = -5;
+                        legRX = 5;
+                        armSet = armPos2; // Alternate arm position
+                    } else { // Even steps (and first/last step)
+                        legLX = 0;
+                        legRX = 0;
+                        armSet = armPos1;
+                    }
+                }
+                
+                dynamicClimbingSteps.push({
+                    y: currentY,
+                    lL: legLX,
+                    rL: legRX,
+                    lAX: armSet[0], // Left Arm X2
+                    lAY: armSet[1], // Left Arm Y2
+                    rAX: armSet[2], // Right Arm X2
+                    rAY: armSet[3]  // Right Arm Y2
+                });
+            }
+
 
             if (dynamicClimbingSteps.length > 0) {
-                dynamicClimbingSteps[0] = { y: 0, lL: 0, rL: 0, lA: 0, rA: 0 }; 
+                 // Ensure first step is default standing pose (arms might be slightly different than full rest)
+                dynamicClimbingSteps[0] = { y: 0, lL: 0, rL: 0, lAX: 30, lAY: 70, rAX: 70, rAY: 50 };
             } else { 
-                dynamicClimbingSteps.push({ y: 0, lL: 0, rL: 0, lA: 0, rA: 0 });
+                dynamicClimbingSteps.push({ y: 0, lL: 0, rL: 0, lAX: 30, lAY: 70, rAX: 70, rAY: 50 });
             }
             
             if (climbTopY_global < 5 || isNaN(climbTopY_global)) { 
-                dynamicClimbingSteps = [{ y: 0, lL: 0, rL: 0, lA: 0, rA: 0 }];
+                dynamicClimbingSteps = [{ y: 0, lL: 0, rL: 0, lAX: 30, lAY: 70, rAX: 70, rAY: 50 }];
             }
         }
 
@@ -795,11 +824,12 @@
         
         function animateLimbs(step) {
             if (!step) { return; }
-            leftLeg.setAttribute('x2', 35 + step.lL);
-            rightLeg.setAttribute('x2', 65 + step.rL);
-            leftArm.setAttribute('x2', 30 + step.lA);
-            rightArm.setAttribute('y2', 50); 
-            rightArm.setAttribute('x2', 70 + step.rA);
+            leftLeg.setAttribute('x2', String(35 + step.lL));
+            rightLeg.setAttribute('x2', String(65 + step.rL));
+            leftArm.setAttribute('x2', String(step.lAX)); 
+            leftArm.setAttribute('y2', String(step.lAY));
+            rightArm.setAttribute('x2', String(step.rAX));
+            rightArm.setAttribute('y2', String(step.rAY));
         }
         
         function wave() {
@@ -812,13 +842,13 @@
             const waveInterval = setInterval(() => {
                 waveTime += intervalTime;
                 const waveY = originalY2 - 15 * Math.sin((waveTime / waveDuration) * Math.PI * 4); 
-                rightArm.setAttribute('x2', originalX2);
-                rightArm.setAttribute('y2', waveY);
+                rightArm.setAttribute('x2', String(originalX2));
+                rightArm.setAttribute('y2', String(waveY));
                 
                 if (waveTime >= waveDuration) {
                     clearInterval(waveInterval);
-                    rightArm.setAttribute('x2', originalX2); 
-                    rightArm.setAttribute('y2', originalY2);
+                    rightArm.setAttribute('x2', String(originalX2)); 
+                    rightArm.setAttribute('y2', String(originalY2));
                     moveToLadderAndPrepareClimb(); 
                 }
             }, intervalTime);
@@ -866,33 +896,23 @@
         }
         
         function interactWithLightBulbAtTop(turnLightOn) { 
-            // Set initial arm positions for reaching
-            // Left arm reaches towards the light (assumed to be to the figure's left and slightly up)
-            // SVG coordinates: x1,y1 is shoulder, x2,y2 is hand
-            // Stick figure SVG viewBox="0 0 100 150"
-            // Left arm base: x1="50" y1="60"
-            // Right arm base: x1="50" y1="60"
-            
-            const leftArmReachX = 25; // Further left
-            const leftArmReachY = 35; // Higher up
+            const leftArmReachX = 25; 
+            const leftArmReachY = 35; 
             leftArm.setAttribute('x2', String(leftArmReachX)); 
             leftArm.setAttribute('y2', String(leftArmReachY)); 
             
-            // Right arm holds ladder for stability
-            rightArm.setAttribute('x2', '70'); // Standard hold
-            rightArm.setAttribute('y2', '70'); // Standard hold
+            rightArm.setAttribute('x2', '70'); 
+            rightArm.setAttribute('y2', '70'); 
 
-            // Keep the body transform static during screwing, only left arm moves
             stickFigure.style.transform = `translateX(${stickFigureTranslateXOnLadder_global || 0}px) translateY(-${climbTopY_global || 0}px)`;
 
             let rotations = 0;
             const screwDuration = 1500; 
             const intervalTime = 100;
-            const screwRadius = 5; // Radius of the circular screwing motion for the hand
+            const screwRadius = 5; 
 
             const screwInterval = setInterval(() => {
-                // Calculate screwing motion for the left hand
-                const currentScrewAngleRad = (rotations * 30) * (Math.PI / 180); // 30 degrees per step
+                const currentScrewAngleRad = (rotations * 30) * (Math.PI / 180); 
                 const handOffsetX = screwRadius * Math.cos(currentScrewAngleRad);
                 const handOffsetY = screwRadius * Math.sin(currentScrewAngleRad);
 
@@ -903,7 +923,6 @@
                 
                 if ((rotations * intervalTime) >= screwDuration) {
                     clearInterval(screwInterval);
-                    // Reset left arm to a more neutral "finished" position or keep it reaching
                     leftArm.setAttribute('x2', String(leftArmReachX)); 
                     leftArm.setAttribute('y2', String(leftArmReachY)); 
                     
@@ -925,7 +944,6 @@
              if (!dynamicClimbingSteps || dynamicClimbingSteps.length === 0) {
                 resetToNormalPose(); return; 
             }
-            // Reset arms to climbing pose before descending
             animateLimbs(dynamicClimbingSteps[dynamicClimbingSteps.length-1]); 
             currentClimbStep = dynamicClimbingSteps.length - 2; 
             climbDown();
@@ -951,12 +969,11 @@
         
         function resetToNormalPose() {
             stickFigure.style.transform = 'translateX(0px) translateY(0px)';
-            // Reset limbs to default standing pose
             leftLeg.setAttribute('x2', '35');
             rightLeg.setAttribute('x2', '65');
-            leftArm.setAttribute('x2', '30'); // Default left arm
+            leftArm.setAttribute('x2', '30'); 
             leftArm.setAttribute('y2', '70');
-            rightArm.setAttribute('x2', '70'); // Default right arm
+            rightArm.setAttribute('x2', '70'); 
             rightArm.setAttribute('y2', '50'); 
             
             setTimeout(() => { 
