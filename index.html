@@ -43,10 +43,11 @@
             padding: 1rem 0;
         }
         
-        .header-left {
+        .header-left { 
             font-size: 14px;
             text-transform: uppercase;
             letter-spacing: 0.05em;
+            min-width: 150px; 
         }
         
         .header-center {
@@ -85,8 +86,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: #333; /* Darker grey for dark mode (switch off) */
-            border: 1px solid #fff; /* White border in dark mode */
+            background-color: #333; 
+            border: 1px solid #fff; 
             transition: .4s;
         }
         .slider:before {
@@ -94,19 +95,19 @@
             content: "";
             height: 20px; 
             width: 20px; 
-            left: 3px; /* Adjusted for border */
-            bottom: 3px; /* Adjusted for border */
+            left: 3px; 
+            bottom: 3px; 
             background-color: white; 
             transition: .4s;
         }
         
-        input:checked + .slider { /* Light mode active */
-            background-color: #ddd; /* Light grey background for light mode */
-            border-color: #000; /* Black border in light mode */
+        input:checked + .slider { 
+            background-color: #ddd; 
+            border-color: #000; 
         }
         input:checked + .slider:before {
             transform: translateX(22px);
-            background-color: #333; /* Dark knob for light mode */
+            background-color: #333; 
         }
         .slider.round {
             border-radius: 28px; 
@@ -115,23 +116,21 @@
             border-radius: 50%;
         }
 
-        /* Styles for when body has .light-theme but switch might be forced to an opposite state during animation */
         body.light-theme .theme-switch-wrapper input:not(:checked) + .slider {
-            background-color: #333; /* Should look like dark mode switch */
+            background-color: #333; 
             border-color: #fff;
         }
          body.light-theme .theme-switch-wrapper input:not(:checked) + .slider:before {
             background-color: white;
-            transform: translateX(0px); /* Ensure it's on the left */
+            transform: translateX(0px); 
         }
-        /* Styles for when body is dark (no .light-theme) but switch might be forced to checked */
         body:not(.light-theme) .theme-switch-wrapper input:checked + .slider {
-            background-color: #ddd; /* Should look like light mode switch */
+            background-color: #ddd; 
             border-color: #000;
         }
         body:not(.light-theme) .theme-switch-wrapper input:checked + .slider:before {
             background-color: #333;
-            transform: translateX(22px); /* Ensure it's on the right */
+            transform: translateX(22px); 
         }
 
 
@@ -155,17 +154,17 @@
         main {
             flex: 1; 
             display: flex; 
-            flex-direction: column; /* Ensures children stack and can expand */
+            flex-direction: column; 
             position: relative; 
         }
         
         .main-content {
             position: relative;
             width: 100%;
-            flex-grow: 1; /* Allows this to grow and fill 'main' */
+            flex-grow: 1; 
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Centers its own direct children (name, categories) */
+            justify-content: center; 
         }
         
         .name-display {
@@ -450,8 +449,8 @@
 
     <div class="container">
         <header>
-            <div class="header-left"></div>
-            <div class="header-center">Welcome</div>
+            <div class="header-left"></div> 
+            <div class="header-center">Portfolio</div>
             <div class="header-right">
                 <div class="theme-switch-wrapper">
                     <label class="theme-switch" for="theme-checkbox">
@@ -476,19 +475,19 @@
                 <div class="categories hidden">
                     <div class="category-item">
                         <div class="category-number">01.</div>
-                        <div class="category-name">About</div>
+                        <div class="category-name">CS Projects</div>
                     </div>
                     <div class="category-item">
                         <div class="category-number">02.</div>
-                        <div class="category-name">Projects</div>
-                    </div>
-                    <div class="category-item">
-                        <div class="category-number">03.</div>
                         <div class="category-name">Research</div>
                     </div>
                     <div class="category-item">
+                        <div class="category-number">03.</div>
+                        <div class="category-name">Poetry</div>
+                    </div>
+                    <div class="category-item">
                         <div class="category-number">04.</div>
-                        <div class="category-name">Writing</div>
+                        <div class="category-name">About</div>
                     </div>
                 </div>
                 
@@ -529,8 +528,8 @@
 
         <footer>
             <div class="footer-name">Angela Li</div>
-            <div class="footer-website">github.com/angelaxli</div>
-            <div class="footer-email">226angelli@gmail.com</div>
+            <div class="footer-website">github.com/angelali</div>
+            <div class="footer-email">angela.li@email.com</div>
         </footer>
     </div>
 
@@ -570,30 +569,25 @@
 
         function getElementHeight(element, numericFallbackValue) {
             if (!element) {
-                // console.warn(`[AnimationDebug] getElementHeight: Element is null/undefined. Returning fallback: ${numericFallbackValue}`);
                 return numericFallbackValue || 0;
             }
             let height = element.getBoundingClientRect().height;
             if (height && !isNaN(height) && height > 0) { 
                 return height;
             }
-            // console.warn(`[AnimationDebug] getBoundingClientRect().height for ${element.id || element.className} is ${height}. Trying offsetHeight.`);
             height = element.offsetHeight;
             if (height && !isNaN(height) && height > 0) {
                 return height;
             }
-            // console.warn(`[AnimationDebug] offsetHeight for ${element.id || element.className} is ${height}. Trying getComputedStyle.`);
             height = parseFloat(getComputedStyle(element).height);
             if (height && !isNaN(height) && height > 0) {
                 return height;
             }
-            // console.warn(`[AnimationDebug] CSS height for ${element.id || element.className} is also ${height}. Using provided numeric fallback: ${numericFallbackValue}`);
             return numericFallbackValue || 0;
         }
 
 
         function updateAnimationParameters() {
-            // console.log("[AnimationDebug] --- Updating animation parameters START ---");
             if (!animationContainer || !stickFigure || !ladder || !lightFixture || !ceiling || !lightSetup || !yearElement) {
                 cacheElements();
                  if (!animationContainer || !stickFigure || !ladder || !lightFixture || !ceiling || !lightSetup || !yearElement) {
@@ -604,19 +598,15 @@
 
             const animContainerHeight = getElementHeight(animationContainer, 400); 
             const animContainerRect = animationContainer.getBoundingClientRect(); 
-            // console.log(`[AnimationDebug] animContainerHeight: ${animContainerHeight}px, animContainerViewportTop: ${animContainerRect.top}px`);
 
             const yearRect = yearElement.getBoundingClientRect();
             const yearElementHeight = getElementHeight(yearElement, 30); 
             const yearBottom_viewport = yearRect.bottom; 
-            // console.log(`[AnimationDebug] Year Element: viewportTop=${yearRect.top}px, height=${yearElementHeight}px, viewportBottom=${yearBottom_viewport}px`);
 
             const targetCeilingTop_viewport = yearBottom_viewport + (yearElementHeight * 0.08);
-            // console.log(`[AnimationDebug] Target Ceiling Top (Viewport): ${targetCeilingTop_viewport}px`);
 
             const lightSetupViewportTop = animContainerRect.top; 
             let finalCeilingTop_relativeToLightSetup = targetCeilingTop_viewport - lightSetupViewportTop;
-            // console.log(`[AnimationDebug] Light Setup Viewport Top: ${lightSetupViewportTop}px`);
             
             const minCeilingTopRel = animContainerHeight * 0.05; 
             const maxCeilingTopRel = animContainerHeight * 0.50; 
@@ -626,12 +616,10 @@
                 finalCeilingTop_relativeToLightSetup = maxCeilingTopRel;
             }
             ceiling.style.top = finalCeilingTop_relativeToLightSetup + 'px';
-            // console.log(`[AnimationDebug] Ceiling: finalTop_relativeToLightSetup=${finalCeilingTop_relativeToLightSetup}px`);
 
             const lightFixtureElementHeight = getElementHeight(lightFixture, 40); 
             let finalLightFixtureTopCssValue = finalCeilingTop_relativeToLightSetup + 5; 
             lightFixture.style.top = finalLightFixtureTopCssValue + 'px';
-            // console.log(`[AnimationDebug] Light Fixture: elementHeight=${lightFixtureElementHeight}px, finalTopCssValue=${finalLightFixtureTopCssValue}px`);
             
             const ladderCssBottom = parseFloat(getComputedStyle(ladder).bottom); 
             const lightFixtureBottom_relativeToLightSetup = finalLightFixtureTopCssValue + lightFixtureElementHeight;
@@ -642,8 +630,6 @@
             let newLadderHeightCalculated = (animContainerHeight - ladderCssBottom) - ladderTopTarget_relativeToLightSetup;
             newLadderHeightCalculated = Math.max(animContainerHeight * 0.2, newLadderHeightCalculated); 
             ladder.style.height = newLadderHeightCalculated + 'px';
-            // const ladderElementHeight = getElementHeight(ladder, newLadderHeightCalculated); 
-            // console.log(`[AnimationDebug] Ladder: cssBottom=${ladderCssBottom}px, newCalculatedHeight=${newLadderHeightCalculated}px, actualElementHeight=${ladderElementHeight}px`);
 
             const lightSetupRect = lightSetup.getBoundingClientRect(); 
             const ceilingStartGlobalX = lightSetupRect.left + (lightSetup.offsetWidth / 2); 
@@ -662,10 +648,8 @@
             
             const sfCssBottom = parseFloat(getComputedStyle(stickFigure).bottom); 
             const sfHeight = getElementHeight(stickFigure, 120); 
-            // console.log(`[AnimationDebug] Stick Figure: cssBottom=${sfCssBottom}px, sfHeight=${sfHeight}px`);
             
             if (sfHeight === 0 || isNaN(sfHeight) || lightFixtureElementHeight === 0 || isNaN(lightFixtureElementHeight)) {
-                // console.error("[AnimationDebug] Stick figure or Light fixture height is 0 or NaN. Setting climbTopY to 0.");
                 climbTopY_global = 0; 
             } else {
                 const sfHandsOffsetYFactor = 60 / 150; 
@@ -673,15 +657,12 @@
 
                 const sfInitialTopEdge_from_AC_Top = animContainerHeight - sfCssBottom - sfHeight;
                 const sfInitialHands_from_AC_Top = sfInitialTopEdge_from_AC_Top + sfHandsOffsetFromSFTop_px;
-                // console.log(`[AnimationDebug] Stick Figure Initial Y: topEdgeFromACTop=${sfInitialTopEdge_from_AC_Top}px, handsFromACTop=${sfInitialHands_from_AC_Top}px`);
                 
                 const lfTargetBottom_from_AC_Top = finalLightFixtureTopCssValue + lightFixtureElementHeight;
-                // console.log(`[AnimationDebug] Light Fixture Target Y (Bottom): bottomFromACTop=${lfTargetBottom_from_AC_Top}px`);
 
                 climbTopY_global = sfInitialHands_from_AC_Top - lfTargetBottom_from_AC_Top;
                 climbTopY_global = Math.max(0, climbTopY_global); 
             }
-            // console.log(`[AnimationDebug] FINAL climbTopY_global: ${climbTopY_global}px`);
 
             const baseStepYPercentages = [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1]; 
             dynamicClimbingSteps = baseStepYPercentages.map((p, index) => ({
@@ -700,14 +681,11 @@
             
             if (climbTopY_global < 5 || isNaN(climbTopY_global)) { 
                 dynamicClimbingSteps = [{ y: 0, lL: 0, rL: 0, lA: 0, rA: 0 }];
-                // console.log("[AnimationDebug] Climb distance very small or NaN, setting to no climb steps.");
             }
-            // console.log("[AnimationDebug] --- Parameter update finished ---");
         }
 
         function setupThemeToggle() {
             if (!themeCheckbox) {
-                // console.error("[AnimationDebug] Theme checkbox not found for setup!");
                 return;
             }
             themeCheckbox.checked = isLightTheme; 
@@ -761,7 +739,6 @@
 
 
         window.onload = () => {
-            // console.log("[AnimationDebug] window.onload fired.");
             cacheElements(); 
             setupThemeToggle(); 
 
@@ -774,7 +751,6 @@
                 });
             }, 300); 
             
-            // Increased delay for initial parameter calculation, especially for GitHub Pages
             setTimeout(() => {
                 requestAnimationFrame(() => { 
                     updateAnimationParameters(); 
@@ -792,7 +768,7 @@
                         }
                     }, 1200); 
                 });
-            }, 500); // Increased delay for initial parameter calculation
+            }, 500); 
         };
         
         const cursorDot = document.getElementById('cursor-dot');
@@ -882,7 +858,6 @@
                  setTimeout(climbLadder, 400); 
                  return;
             }
-            // console.log(`[AnimationDebug] Climbing step ${currentClimbStep}: translateY(-${step.y}px).`);
             stickFigure.style.transform = `translateX(${stickFigureTranslateXOnLadder_global || 0}px) translateY(-${step.y}px)`;
             animateLimbs(step); 
             
@@ -891,24 +866,46 @@
         }
         
         function interactWithLightBulbAtTop(turnLightOn) { 
-            leftArm.setAttribute('x2', '45'); 
-            leftArm.setAttribute('y2', '30'); 
-            rightArm.setAttribute('x2', '55'); 
-            rightArm.setAttribute('y2', '30');
+            // Set initial arm positions for reaching
+            // Left arm reaches towards the light (assumed to be to the figure's left and slightly up)
+            // SVG coordinates: x1,y1 is shoulder, x2,y2 is hand
+            // Stick figure SVG viewBox="0 0 100 150"
+            // Left arm base: x1="50" y1="60"
+            // Right arm base: x1="50" y1="60"
             
+            const leftArmReachX = 25; // Further left
+            const leftArmReachY = 35; // Higher up
+            leftArm.setAttribute('x2', String(leftArmReachX)); 
+            leftArm.setAttribute('y2', String(leftArmReachY)); 
+            
+            // Right arm holds ladder for stability
+            rightArm.setAttribute('x2', '70'); // Standard hold
+            rightArm.setAttribute('y2', '70'); // Standard hold
+
+            // Keep the body transform static during screwing, only left arm moves
+            stickFigure.style.transform = `translateX(${stickFigureTranslateXOnLadder_global || 0}px) translateY(-${climbTopY_global || 0}px)`;
+
             let rotations = 0;
             const screwDuration = 1500; 
             const intervalTime = 100;
-            let screwAngle = 0;
+            const screwRadius = 5; // Radius of the circular screwing motion for the hand
 
             const screwInterval = setInterval(() => {
-                screwAngle = (rotations % 2 === 0) ? 5 : -5; 
-                stickFigure.style.transform = `translateX(${stickFigureTranslateXOnLadder_global || 0}px) translateY(-${climbTopY_global || 0}px) rotate(${screwAngle}deg)`;
+                // Calculate screwing motion for the left hand
+                const currentScrewAngleRad = (rotations * 30) * (Math.PI / 180); // 30 degrees per step
+                const handOffsetX = screwRadius * Math.cos(currentScrewAngleRad);
+                const handOffsetY = screwRadius * Math.sin(currentScrewAngleRad);
+
+                leftArm.setAttribute('x2', String(leftArmReachX + handOffsetX));
+                leftArm.setAttribute('y2', String(leftArmReachY + handOffsetY));
+                
                 rotations++;
                 
                 if ((rotations * intervalTime) >= screwDuration) {
                     clearInterval(screwInterval);
-                    stickFigure.style.transform = `translateX(${stickFigureTranslateXOnLadder_global || 0}px) translateY(-${climbTopY_global || 0}px)`; 
+                    // Reset left arm to a more neutral "finished" position or keep it reaching
+                    leftArm.setAttribute('x2', String(leftArmReachX)); 
+                    leftArm.setAttribute('y2', String(leftArmReachY)); 
                     
                     if (turnLightOn) {
                         lightFixture.classList.add('light-glow');
@@ -928,6 +925,7 @@
              if (!dynamicClimbingSteps || dynamicClimbingSteps.length === 0) {
                 resetToNormalPose(); return; 
             }
+            // Reset arms to climbing pose before descending
             animateLimbs(dynamicClimbingSteps[dynamicClimbingSteps.length-1]); 
             currentClimbStep = dynamicClimbingSteps.length - 2; 
             climbDown();
@@ -953,11 +951,12 @@
         
         function resetToNormalPose() {
             stickFigure.style.transform = 'translateX(0px) translateY(0px)';
+            // Reset limbs to default standing pose
             leftLeg.setAttribute('x2', '35');
             rightLeg.setAttribute('x2', '65');
-            leftArm.setAttribute('x2', '30');
-            leftArm.setAttribute('y2', '70'); 
-            rightArm.setAttribute('x2', '70');
+            leftArm.setAttribute('x2', '30'); // Default left arm
+            leftArm.setAttribute('y2', '70');
+            rightArm.setAttribute('x2', '70'); // Default right arm
             rightArm.setAttribute('y2', '50'); 
             
             setTimeout(() => { 
